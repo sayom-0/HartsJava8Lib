@@ -39,7 +39,7 @@ public class Utils
 		return UTILS_VERSION;
 	}
 
-	public static Object read(File ifile, Object otr)
+	/*public static Object read(File ifile, Object otr)
 	{
 		FileInputStream fis;
 		ObjectInputStream ois;
@@ -76,5 +76,6 @@ public class Utils
 		{
 			e.printStackTrace();
 		}
-	}
+	}*/
+	
 }
