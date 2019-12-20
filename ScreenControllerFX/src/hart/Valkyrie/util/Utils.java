@@ -12,49 +12,9 @@ import java.util.ArrayList;
 
 public class Utils
 {
-	private final static double UTILS_VERSION = 1.2;
+	private final static double UTILS_VERSION = 1.3;
 
-	public static int searcharray(ArrayList array, Object val)
-	{
-		if (array.contains(val))
-		{
-			int x = 0;
-			while (true)
-			{
-				if (array.get(x) == val)
-				{
-					return x;
-				} else
-				{
-					x++;
-				}
-			}
-		}
-
-		return -1;
-	}
-
-	public static int searcharray(ArrayList<Double> array, double val)
-	{
-		if (array.contains(val))
-		{
-			int x = 0;
-			while (true)
-			{
-				if (array.get(x) == val)
-				{
-					return x;
-				} else
-				{
-					x++;
-				}
-			}
-		}
-
-		return -1;
-	}
-
-	public static int searcharray(ArrayList<Character> array, char val)
+	public static int searchArrayList(ArrayList<Object> array, Object val)
 	{
 		if (array.contains(val))
 		{
