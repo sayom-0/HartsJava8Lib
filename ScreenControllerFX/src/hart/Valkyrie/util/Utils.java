@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class Utils
 {
-	private final static double UTILS_VERSION = 1.3;
+	private final static double UTILS_VERSION = 1.4;
 
 	public static int searchArrayList(ArrayList<Object> array, Object val)
 	{
@@ -38,44 +38,5 @@ public class Utils
 	{
 		return UTILS_VERSION;
 	}
-
-	/*public static Object read(File ifile, Object otr)
-	{
-		FileInputStream fis;
-		ObjectInputStream ois;
-		try
-		{
-			fis = new FileInputStream(ifile);
-			ois = new ObjectInputStream(fis);
-			return (Object) ois.readObject();
-		} catch (IOException | ClassNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	public static void write(File ifile, Object otw)
-	{
-		FileOutputStream saveos = null;
-		ObjectOutputStream saveoos = null;
-
-		try
-		{
-			saveos = new FileOutputStream(ifile);
-			saveoos = new ObjectOutputStream(saveos);
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-
-		try
-		{
-			saveoos.writeObject(otw);
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-	}*/
 	
 }

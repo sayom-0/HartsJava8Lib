@@ -9,6 +9,8 @@ import java.io.ObjectOutputStream;
 
 public class DataManager
 {
+	private final static double DATAMANAGER_VERSION = 1.0;
+	
 	private FileInputStream fis;
 	private ObjectInputStream ois;
 	
@@ -50,5 +52,12 @@ public class DataManager
 			e.printStackTrace();
 		}
 	}
+
+	public static double getDatamanagerVersion()
+	{
+		return DATAMANAGER_VERSION;
+	}
+	
+	
 	
 }
