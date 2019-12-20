@@ -2,14 +2,22 @@
 
 package hart.Valkyrie.util;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class NamedArrayList
+public class NamedArrayList implements Serializable
 {
 	private ArrayList<Object> NAL;
 	private ArrayList<Object> DAL;
 
-	private final static double UTILS_VERSION = 1.0;
+	private final static double NAMEDARRAYLIST_VERSION = 1.1;
+	
+	public NamedArrayList()
+	{
+		super();
+		NAL = new ArrayList<Object>();
+		DAL = new ArrayList<Object>();
+	}
 
 	public void add(String name, Object data)
 	{
@@ -35,7 +43,7 @@ public class NamedArrayList
 
 	public static double getUtilsVersion()
 	{
-		return UTILS_VERSION;
+		return NAMEDARRAYLIST_VERSION;
 	}
 
 }

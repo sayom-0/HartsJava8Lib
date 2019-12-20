@@ -2,25 +2,21 @@
 
 package hart.Valkyrie.SCFX;
 
-import java.util.ArrayList;
-
 import hart.Valkyrie.exceptions.IllegalDimensionsException;
+import hart.Valkyrie.util.NamedArrayList;
 import javafx.scene.Node;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class ScreenControllerFX
 {
-	private static final double SCFX_VERSION = 1.4;
+	private static final double SCFX_VERSION = 1.5;
 
 	private double width;
 	private double height;
-
-	private ArrayList<String> fontsindex = new ArrayList<String>();
-	private ArrayList<String> otextindex = new ArrayList<String>();
-
-	private ArrayList<Font> fonts = new ArrayList<Font>();
-	private ArrayList<Text> otext = new ArrayList<Text>();
+	
+	private NamedArrayList texts = new NamedArrayList();
+	private NamedArrayList fonts = new NamedArrayList();
 
 	public ScreenControllerFX()
 	{
@@ -49,45 +45,28 @@ public class ScreenControllerFX
 
 	public Text getText(String si)
 	{
-		int x = 0;
-		if (otextindex.contains(si))
-			;
-		{
-			while (!(otextindex.get(x) == si))
-			{
-				x++;
-			}
-			return otext.get(x);
-		}
+		return (Text) texts.get(si);
 	}
 
 	public void makeText(String fname, Text itext, String fn)
 	{
-		otextindex.add(fname);
-
 		itext.setFont(getFont(fn));
-
-		otext.add(itext);
+		texts.add(fname, itext);
+	}
+	
+	public void makeText(String fname, Text itext)
+	{
+		texts.add(fname, itext);
 	}
 
 	public Font getFont(String si)
 	{
-		int x = 0;
-		if (fontsindex.contains(si))
-			;
-		{
-			while (!(fontsindex.get(x) == si))
-			{
-				x++;
-			}
-			return fonts.get(x);
-		}
+		return (Font) fonts.get(si);
 	}
 
 	public void makeFont(String fname, Font ifont)
 	{
-		fontsindex.add(fname);
-		fonts.add(ifont);
+		fonts.add(fname, ifont);
 	}
 
 	public void setRes(String si, double i)
