@@ -1,5 +1,7 @@
 package hart.Valkyrie.objects;
 
+import hart.Valkyrie.exceptions.DuplicateNameException;
+import hart.Valkyrie.exceptions.NonExistantDataException;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
@@ -37,7 +39,7 @@ public class EventButtonManager
 		events = iEvents;
 	}
 	
-	public Button getButton(String si)
+	public Button getButton(String si) throws NonExistantDataException
 	{
 		return (Button) buttons.get(si);
 	}
@@ -47,12 +49,12 @@ public class EventButtonManager
 		buttons.set(fname, ibutton);
 	}
 
-	public void makeButton(String fname, Button ibutton)
+	public void makeButton(String fname, Button ibutton) throws DuplicateNameException
 	{
 		buttons.add(fname, ibutton);
 	}
 	
-	public EventHandler getEvent(String si)
+	public EventHandler getEvent(String si) throws NonExistantDataException
 	{
 		return (EventHandler) events.get(si);
 	}
@@ -62,17 +64,17 @@ public class EventButtonManager
 		events.set(fname, iEvent);
 	}
 
-	public void makeEvent(String fname, EventHandler iEvent)
+	public void makeEvent(String fname, EventHandler iEvent) throws DuplicateNameException
 	{
 		events.add(fname, iEvent);
 	}
 	
-	public void makeLink(String buttonName, String eventName)
+	public void makeLink(String buttonName, String eventName) throws NonExistantDataException
 	{
 		((Button) buttons.get(buttonName)).setOnAction((EventHandler) events.get(eventName));
 	}
 	
-	public void removeLink(String buttonName)
+	public void removeLink(String buttonName) throws NonExistantDataException
 	{
 		((Button) buttons.get(buttonName)).setOnAction(null);
 	}

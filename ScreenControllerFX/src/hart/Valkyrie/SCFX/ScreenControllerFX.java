@@ -2,8 +2,10 @@
 
 package hart.Valkyrie.SCFX;
 
+import hart.Valkyrie.exceptions.DuplicateNameException;
 import hart.Valkyrie.exceptions.IllegalDimensionsException;
 import hart.Valkyrie.exceptions.InvalidMoudleException;
+import hart.Valkyrie.exceptions.NonExistantDataException;
 import hart.Valkyrie.objects.EventButtonManager;
 import hart.Valkyrie.objects.NamedArrayList;
 import javafx.scene.Node;
@@ -80,7 +82,7 @@ public class ScreenControllerFX
 		texts = itexts;
 	}
 
-	public void loadModule(String moduleToLoad) throws InvalidMoudleException
+	public void loadModule(String moduleToLoad) throws InvalidMoudleException, DuplicateNameException
 	{
 		switch (moduleToLoad)
 		{
@@ -93,23 +95,23 @@ public class ScreenControllerFX
 		}
 	}
 
-	public Object interactModule(String module)
+	public Object interactModule(String module) throws NonExistantDataException
 	{
 		return modules.get(module);
 	}
 
-	public Text getText(String si)
+	public Text getText(String si) throws NonExistantDataException
 	{
 		return (Text) texts.get(si);
 	}
 
-	public void makeText(String fname, Text itext, String fn)
+	public void makeText(String fname, Text itext, String fn) throws DuplicateNameException, NonExistantDataException
 	{
 		itext.setFont(getFont(fn));
 		texts.add(fname, itext);
 	}
 
-	public void makeText(String fname, Text itext)
+	public void makeText(String fname, Text itext) throws DuplicateNameException
 	{
 		texts.add(fname, itext);
 	}
@@ -119,7 +121,7 @@ public class ScreenControllerFX
 		texts.set(fname, itext);
 	}
 
-	public Font getFont(String si)
+	public Font getFont(String si) throws NonExistantDataException
 	{
 		return (Font) fonts.get(si);
 	}
@@ -129,7 +131,7 @@ public class ScreenControllerFX
 		fonts.set(fname, ifont);
 	}
 
-	public void makeFont(String fname, Font ifont)
+	public void makeFont(String fname, Font ifont) throws DuplicateNameException
 	{
 		fonts.add(fname, ifont);
 	}
