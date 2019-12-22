@@ -5,6 +5,11 @@ package hart.Valkyrie.exceptions;
 public class IllegalDimensionsException extends Exception
 {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5152157372545417341L;
+
 	public IllegalDimensionsException()
 	{
 		// TODO Auto-generated constructor stub

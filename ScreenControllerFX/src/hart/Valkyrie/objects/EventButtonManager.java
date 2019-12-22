@@ -5,10 +5,37 @@ import javafx.scene.control.Button;
 
 public class EventButtonManager
 {
-	private final static double EVENTBUTTONMANAGER_VERSION = 1.0;
+	private final static double EVENTBUTTONMANAGER_VERSION = 1.1;
 	
 	private NamedArrayList buttons;
 	private NamedArrayList events;
+	
+	public EventButtonManager()
+	{
+		super();
+	}
+	
+	public NamedArrayList exportButtons()
+	{
+		NamedArrayList xbuttons = buttons;
+		return xbuttons;
+	}
+	
+	public void importButtons(NamedArrayList ibuttons)
+	{
+		buttons = ibuttons;
+	}
+	
+	public NamedArrayList exportEvents()
+	{
+		NamedArrayList xEvents = events;
+		return xEvents;
+	}
+	
+	public void importEvents(NamedArrayList iEvents)
+	{
+		events = iEvents;
+	}
 	
 	public Button getButton(String si)
 	{
