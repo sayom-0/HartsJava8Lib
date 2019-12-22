@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import hart.Valkyrie.objects.NamedArrayList;
+
 public class DataManager
 {
 	private final static double DATAMANAGER_VERSION = 1.0;

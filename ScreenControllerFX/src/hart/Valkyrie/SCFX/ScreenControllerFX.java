@@ -3,7 +3,7 @@
 package hart.Valkyrie.SCFX;
 
 import hart.Valkyrie.exceptions.IllegalDimensionsException;
-import hart.Valkyrie.util.NamedArrayList;
+import hart.Valkyrie.objects.NamedArrayList;
 import javafx.scene.Node;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;

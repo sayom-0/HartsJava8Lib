@@ -1,12 +1,18 @@
 //Author: Logan Xander Hart
 
-package hart.Valkyrie.util;
+package hart.Valkyrie.objects;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import hart.Valkyrie.util.Utils;
+
 public class NamedArrayList implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4692623948131600984L;
 	private ArrayList<Object> NAL;
 	private ArrayList<Object> DAL;
 
@@ -27,18 +33,18 @@ public class NamedArrayList implements Serializable
 
 	public Object get(String name)
 	{
-		return DAL.get(hart.Valkyrie.util.Utils.searchArrayList(NAL, name));
+		return DAL.get(Utils.searchArrayList(NAL, name));
 	}
 
 	public void set(String name, Object data)
 	{
-		DAL.set(hart.Valkyrie.util.Utils.searchArrayList(NAL, name), data);
+		DAL.set(Utils.searchArrayList(NAL, name), data);
 	}
 
 	public void remove(String name)
 	{
-		DAL.remove(hart.Valkyrie.util.Utils.searchArrayList(NAL, name));
-		NAL.remove(hart.Valkyrie.util.Utils.searchArrayList(NAL, name));
+		DAL.remove(Utils.searchArrayList(NAL, name));
+		NAL.remove(Utils.searchArrayList(NAL, name));
 	}
 
 	public static double getUtilsVersion()
