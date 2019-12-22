@@ -8,13 +8,13 @@ import javafx.scene.Node;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class ScreenControllerFX
+public class ScreenControllerFX 
 {
-	private static final double SCFX_VERSION = 1.5;
+	private static final double SCFX_VERSION = 1.6;
 
 	private double width;
 	private double height;
-	
+
 	private NamedArrayList texts = new NamedArrayList();
 	private NamedArrayList fonts = new NamedArrayList();
 
@@ -53,15 +53,25 @@ public class ScreenControllerFX
 		itext.setFont(getFont(fn));
 		texts.add(fname, itext);
 	}
-	
+
 	public void makeText(String fname, Text itext)
 	{
 		texts.add(fname, itext);
+	}
+	
+	public void replaceText(String fname, Text itext)
+	{
+		texts.set(fname, itext);
 	}
 
 	public Font getFont(String si)
 	{
 		return (Font) fonts.get(si);
+	}
+	
+	public void replaceFont(String fname, Font ifont)
+	{
+		fonts.set(fname, ifont);
 	}
 
 	public void makeFont(String fname, Font ifont)
