@@ -22,8 +22,7 @@ public class EventButtonManager
 
 	public NamedArrayList exportButtons()
 	{
-		NamedArrayList xbuttons = buttons;
-		return xbuttons;
+		return buttons;
 	}
 
 	public void importButtons(NamedArrayList ibuttons)
@@ -33,8 +32,7 @@ public class EventButtonManager
 
 	public NamedArrayList exportEvents()
 	{
-		NamedArrayList xEvents = events;
-		return xEvents;
+		return events;
 	}
 
 	public void importEvents(NamedArrayList iEvents)
@@ -57,7 +55,7 @@ public class EventButtonManager
 		buttons.add(fname, ibutton);
 	}
 
-	public void makeButton(String fname, Button ibutton, EventHandler<ActionEvent> eventh) throws DuplicateNameException
+	public void makeButton(String fname, Button ibutton, EventHandler eventh) throws DuplicateNameException
 	{
 		ibutton.setOnAction(eventh);
 		buttons.add(fname, ibutton);
@@ -65,28 +63,28 @@ public class EventButtonManager
 
 	public void makeButton(String fname, Button ibutton, String eventst) throws DuplicateNameException, NonExistantDataException
 	{
-		ibutton.setOnAction((EventHandler<ActionEvent>) events.get(eventst));
+		ibutton.setOnAction((EventHandler) events.get(eventst));
 		buttons.add(fname, ibutton);
 	}
 
-	public EventHandler<?> getEvent(String si) throws NonExistantDataException
+	public EventHandler getEvent(String si) throws NonExistantDataException
 	{
-		return (EventHandler<?>) events.get(si);
+		return (EventHandler) events.get(si);
 	}
 
-	public void replaceEvent(String fname, EventHandler<?> iEvent)
+	public void replaceEvent(String fname, EventHandler iEvent)
 	{
 		events.set(fname, iEvent);
 	}
 
-	public void makeEvent(String fname, EventHandler<?> iEvent) throws DuplicateNameException
+	public void makeEvent(String fname, EventHandler iEvent) throws DuplicateNameException
 	{
 		events.add(fname, iEvent);
 	}
 
 	public void makeLink(String buttonName, String eventName) throws NonExistantDataException
 	{
-		((Button) buttons.get(buttonName)).setOnAction((EventHandler<ActionEvent>) events.get(eventName));
+		((Button) buttons.get(buttonName)).setOnAction((EventHandler) events.get(eventName));
 	}
 
 	public void removeLink(String buttonName) throws NonExistantDataException

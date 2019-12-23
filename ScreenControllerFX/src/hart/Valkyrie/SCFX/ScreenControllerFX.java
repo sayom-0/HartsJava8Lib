@@ -60,9 +60,7 @@ public class ScreenControllerFX
 
 	public NamedArrayList exportFonts()
 	{
-		NamedArrayList xfonts = fonts;
-
-		return xfonts;
+		return fonts;
 	}
 
 	public void importFonts(NamedArrayList ifonts)
@@ -72,9 +70,7 @@ public class ScreenControllerFX
 	
 	public NamedArrayList exportTexts()
 	{
-		NamedArrayList xtexts = texts;
-		
-		return xtexts;
+		return texts;
 	}
 	
 	public void importTexts(NamedArrayList itexts)
@@ -172,13 +168,15 @@ public class ScreenControllerFX
 		return SCFX_VERSION;
 	}
 
-	public double centerX(Object t)
+	public double centerX(Node t)
 	{
-		return (this.width / 2) - (((Node) t).getLayoutBounds().getWidth() / 2);
+		System.out.println("CenterX Method is marked for review / deletion, this method may not be functional in newer versions of SCFX");
+		return (this.width / 2) - (t.getLayoutBounds().getWidth() / 2);
 	}
 
-	public double centerY(Object t)
+	public double centerY(Node t)
 	{
-		return (this.height / 2) - ((Node) t).getLayoutBounds().getHeight();
+		System.out.println("CenterY Method is marked for review / deletion, this method may not be functional in newer versions of SCFX");
+		return (this.height / 2) - t.getLayoutBounds().getHeight();
 	}
 }

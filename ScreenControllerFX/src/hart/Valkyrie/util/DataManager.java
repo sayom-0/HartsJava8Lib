@@ -2,7 +2,6 @@ package hart.Valkyrie.util;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -12,7 +11,7 @@ import hart.Valkyrie.objects.NamedArrayList;
 
 public class DataManager
 {
-	private final static double DATAMANAGER_VERSION = 1.0;
+	private final static double DATAMANAGER_VERSION = 1.1;
 
 	private FileInputStream fis;
 	private ObjectInputStream ois;
