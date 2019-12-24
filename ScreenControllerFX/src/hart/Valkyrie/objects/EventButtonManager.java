@@ -45,7 +45,7 @@ public class EventButtonManager
 		return (Button) buttons.get(si);
 	}
 
-	public void replaceButton(String fname, Button ibutton)
+	public void replaceButton(String fname, Button ibutton) throws NonExistantDataException
 	{
 		buttons.set(fname, ibutton);
 	}
@@ -72,7 +72,7 @@ public class EventButtonManager
 		return (EventHandler) events.get(si);
 	}
 
-	public void replaceEvent(String fname, EventHandler iEvent)
+	public void replaceEvent(String fname, EventHandler iEvent) throws NonExistantDataException
 	{
 		events.set(fname, iEvent);
 	}

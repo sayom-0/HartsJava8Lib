@@ -18,7 +18,7 @@ public class NamedArrayList implements Serializable
 	private ArrayList<Object> NAL;
 	private ArrayList<Object> DAL;
 
-	private final static double NAMEDARRAYLIST_VERSION = 1.1;
+	private final static double NAMEDARRAYLIST_VERSION = 1.2;
 
 	public NamedArrayList()
 	{
@@ -52,15 +52,32 @@ public class NamedArrayList implements Serializable
 
 	}
 
-	public void set(String name, Object data)
+	public void set(String name, Object data) throws NonExistantDataException
 	{
-		DAL.set(Utils.searchArrayList(NAL, name), data);
+		if (Utils.searchArrayList(NAL, name) == -1)
+		{
+			throw new NonExistantDataException("No data is registered in the NAL.NAL under that String value");
+		} else
+		{
+			DAL.set(Utils.searchArrayList(NAL, name), data);
+		}
 	}
 
-	public void remove(String name)
+	public void remove(String name) throws NonExistantDataException
 	{
-		DAL.remove(Utils.searchArrayList(NAL, name));
-		NAL.remove(Utils.searchArrayList(NAL, name));
+		if (Utils.searchArrayList(NAL, name) == -1)
+		{
+			throw new NonExistantDataException("No data is registered in the NAL.NAL under that String value");
+		} else
+		{
+			DAL.remove(Utils.searchArrayList(NAL, name));
+			NAL.remove(Utils.searchArrayList(NAL, name));
+		}
+	}
+
+	public boolean contains(String name)
+	{
+		return NAL.contains(name);
 	}
 
 	public static double getUtilsVersion()

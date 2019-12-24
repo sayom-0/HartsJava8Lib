@@ -112,7 +112,7 @@ public class ScreenControllerFX
 		texts.add(fname, itext);
 	}
 
-	public void replaceText(String fname, Text itext)
+	public void replaceText(String fname, Text itext) throws NonExistantDataException
 	{
 		texts.set(fname, itext);
 	}
@@ -122,7 +122,7 @@ public class ScreenControllerFX
 		return (Font) fonts.get(si);
 	}
 
-	public void replaceFont(String fname, Font ifont)
+	public void replaceFont(String fname, Font ifont) throws NonExistantDataException
 	{
 		fonts.set(fname, ifont);
 	}
