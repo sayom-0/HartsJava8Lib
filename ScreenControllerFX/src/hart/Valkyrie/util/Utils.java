@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Utils
 {
-	private final static double UTILS_VERSION = 1.4;
+	private final static double UTILS_VERSION = 1.5;
 
 	public static int searchArrayList(ArrayList<Object> array, Object val)
 	{
@@ -27,10 +27,52 @@ public class Utils
 
 		return -1;
 	}
+	
+	public static Object getArrayRow(int row, Object[] obj)
+	{
+		String output = "";
+		int counter = 0;
+
+		while (counter != obj.length)
+		{
+			output += obj[counter];
+			counter++;
+		}
+
+		return output;
+	}
+
+	public static Object getArrayRow(int row, Object[][] obj)
+	{
+		String output = "";
+		int counter = 0;
+
+		while (counter != obj.length)
+		{
+			output += obj[row][counter];
+			counter++;
+		}
+
+		return output;
+	}
+	
+	public static Object getArrayCol(int col, Object[][] obj)
+	{
+		String output = "";
+		int counter = 0;
+
+		while (counter != obj.length)
+		{
+			output += obj[counter][col];
+			counter++;
+		}
+
+		return output;
+	}
 
 	public static double getUtilsVersion()
 	{
 		return UTILS_VERSION;
 	}
-	
+
 }
