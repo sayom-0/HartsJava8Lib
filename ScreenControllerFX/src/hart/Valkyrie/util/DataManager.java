@@ -1,4 +1,4 @@
-/** Description of MyClass 
+/**
  *
  * @author Logan Hart
  * @version V1.1-1.16.20

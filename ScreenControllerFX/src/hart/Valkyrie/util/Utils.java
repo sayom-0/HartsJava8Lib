@@ -1,4 +1,4 @@
-/** Description of MyClass 
+/** The Utils class is a collection of static methods meant to assist in simple QoL Situations
  *
  * @author Logan Hart
  * @version V1.5-1.16.20

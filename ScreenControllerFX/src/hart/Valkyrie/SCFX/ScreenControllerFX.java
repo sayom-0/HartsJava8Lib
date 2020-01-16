@@ -1,4 +1,4 @@
-/** Description of MyClass 
+/**
  *
  * @author Logan Hart
  * @version V1.8-1.16.20
@@ -108,7 +108,7 @@ public class ScreenControllerFX
 
 	public Text getText(String si) throws NonExistantDataException
 	{
-		return (Text) texts.get(si);
+		return texts.get(si);
 	}
 
 	public void makeText(String fname, Text itext, String fn) throws DuplicateNameException, NonExistantDataException

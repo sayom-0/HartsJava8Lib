@@ -1,4 +1,4 @@
-/** Description of MyClass 
+/**
  *
  * @author Logan Hart
  * @version V1.2-1.16.20
@@ -67,7 +67,7 @@ public class EventButtonManager
 
 	public void makeButton(String fname, Button ibutton, String eventst) throws DuplicateNameException, NonExistantDataException
 	{
-		ibutton.setOnAction((EventHandler) events.get(eventst));
+		ibutton.setOnAction(events.get(eventst));
 		buttons.add(fname, ibutton);
 	}
 
@@ -88,7 +88,7 @@ public class EventButtonManager
 
 	public void makeLink(String buttonName, String eventName) throws NonExistantDataException
 	{
-		(buttons.get(buttonName)).setOnAction((EventHandler) events.get(eventName));
+		(buttons.get(buttonName)).setOnAction(events.get(eventName));
 	}
 
 	public void removeLink(String buttonName) throws NonExistantDataException
