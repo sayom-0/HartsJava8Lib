@@ -8,7 +8,7 @@ public class Utils
 {
 	private final static double UTILS_VERSION = 1.5;
 
-	public static int searchArrayList(ArrayList<Object> array, Object val)
+	public static int searchArrayList(ArrayList array, Object val)
 	{
 		if (array.contains(val))
 		{

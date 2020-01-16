@@ -4,30 +4,29 @@ package hart.Valkyrie.objects;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import hart.Valkyrie.exceptions.DuplicateNameException;
 import hart.Valkyrie.exceptions.NonExistantDataException;
 import hart.Valkyrie.util.Utils;
 
-public class NamedArrayList implements Serializable
+public class NamedArrayList<T> implements Serializable
 {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4692623948131600984L;
-	private ArrayList<Object> NAL;
-	private ArrayList<Object> DAL;
+	private ArrayList<String> NAL;
+	private ArrayList<T> DAL;
 
-	private final static double NAMEDARRAYLIST_VERSION = 1.2;
+	private final static double NAMEDARRAYLIST_VERSION = 2.0;
 
 	public NamedArrayList()
 	{
 		super();
-		NAL = new ArrayList<Object>();
-		DAL = new ArrayList<Object>();
+		NAL = new ArrayList<String>();
+		DAL = new ArrayList<T>();
 	}
 
-	public void add(String name, Object data) throws DuplicateNameException
+	public void add(String name, T data) throws DuplicateNameException
 	{
 		if (Utils.searchArrayList(NAL, name) == -1)
 		{
@@ -40,19 +39,20 @@ public class NamedArrayList implements Serializable
 
 	}
 
-	public Object get(String name) throws NonExistantDataException
+	public T get(String name) throws NonExistantDataException
 	{
-		if (Utils.searchArrayList(NAL, name) == -1)
+		int x = Utils.searchArrayList(NAL, name);
+		if (x == -1)
 		{
 			throw new NonExistantDataException("No data is registered in the NAL.NAL under that String value");
 		} else
 		{
-			return DAL.get(Utils.searchArrayList(NAL, name));
+			return DAL.get(x);
 		}
 
 	}
 
-	public void set(String name, Object data) throws NonExistantDataException
+	public void set(String name, T data) throws NonExistantDataException
 	{
 		if (Utils.searchArrayList(NAL, name) == -1)
 		{
@@ -65,19 +65,25 @@ public class NamedArrayList implements Serializable
 
 	public void remove(String name) throws NonExistantDataException
 	{
-		if (Utils.searchArrayList(NAL, name) == -1)
+		int x = Utils.searchArrayList(NAL, name);
+		if (x == -1)
 		{
 			throw new NonExistantDataException("No data is registered in the NAL.NAL under that String value");
 		} else
 		{
-			DAL.remove(Utils.searchArrayList(NAL, name));
-			NAL.remove(Utils.searchArrayList(NAL, name));
+			DAL.remove(x);
+			NAL.remove(x);
 		}
 	}
 
 	public boolean contains(String name)
 	{
 		return NAL.contains(name);
+	}
+
+	public boolean isEmpty()
+	{
+		return NAL.isEmpty() && DAL.isEmpty() ? true : false;
 	}
 
 	public static double getUtilsVersion()

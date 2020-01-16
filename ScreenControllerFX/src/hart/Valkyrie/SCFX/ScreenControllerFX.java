@@ -14,21 +14,21 @@ import javafx.scene.text.Text;
 
 public class ScreenControllerFX
 {
-	private static final double SCFX_VERSION = 1.7;
+	private static final double SCFX_VERSION = 1.8;
 
 	private double width;
 	private double height;
 
-	private NamedArrayList texts;
-	private NamedArrayList fonts;
+	private NamedArrayList<Text> texts;
+	private NamedArrayList<Font> fonts;
 
-	private NamedArrayList modules;
+	private NamedArrayList<Object> modules;
 
 	private void initd()
 	{
-		texts = new NamedArrayList();
-		fonts = new NamedArrayList();
-		modules = new NamedArrayList();
+		texts = new NamedArrayList<Text>();
+		fonts = new NamedArrayList<Font>();
+		modules = new NamedArrayList<Object>();
 	}
 
 	public ScreenControllerFX()
@@ -58,22 +58,22 @@ public class ScreenControllerFX
 		initd();
 	}
 
-	public NamedArrayList exportFonts()
+	public NamedArrayList<Font> exportFonts()
 	{
 		return fonts;
 	}
 
-	public void importFonts(NamedArrayList ifonts)
+	public void importFonts(NamedArrayList<Font> ifonts)
 	{
 		fonts = ifonts;
 	}
 	
-	public NamedArrayList exportTexts()
+	public NamedArrayList<Text> exportTexts()
 	{
 		return texts;
 	}
 	
-	public void importTexts(NamedArrayList itexts)
+	public void importTexts(NamedArrayList<Text> itexts)
 	{
 		texts = itexts;
 	}
