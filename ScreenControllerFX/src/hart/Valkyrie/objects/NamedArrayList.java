@@ -1,7 +1,7 @@
 /** Description of MyClass 
  *
  * @author Logan Hart
- * @version V2.2-1.16.20
+ * @version V2.3-1.16.20
  */
 package hart.Valkyrie.objects;
 
@@ -15,9 +15,9 @@ import hart.Valkyrie.util.Utils;
  * The NamedArrayList(NAL) Class is meant to port the functionality of an
  * ArrayList into a String indexed ArrayList and is heavily used throughout this
  * Library, It works by using two normal ArrayLists and adding entrys to both
- * while relying on them being in-sync to get data back from by scanning the first
- * for a string value and using the same index on a second array list with the
- * actual data.
+ * while relying on them being in-sync to get data back from by scanning the
+ * first for a string value and using the same index on a second array list with
+ * the actual data.
  */
 public class NamedArrayList<T> implements Serializable
 {
@@ -25,7 +25,7 @@ public class NamedArrayList<T> implements Serializable
 	private ArrayList<String> NAL;
 	private ArrayList<T> DAL;
 
-	private final static double NAMEDARRAYLIST_VERSION = 2.2;
+	private final static double NAMEDARRAYLIST_VERSION = 2.3;
 
 	public NamedArrayList()
 	{
@@ -124,22 +124,51 @@ public class NamedArrayList<T> implements Serializable
 	{
 		return NAL.isEmpty() && DAL.isEmpty() ? true : false;
 	}
-	/**Export the Names of all data in AL<String> Format*/
+
+	/** Export the Names of all data in AL<String> Format */
 	public ArrayList<String> exportNAL()
 	{
 		return NAL;
 	}
-	/**Export the Data in NAL in AL<T> Format*/
+
+	/** Export the Data in NAL in AL<T> Format */
 	public ArrayList<T> exportDAL()
 	{
 		return DAL;
 	}
-	
-	/**Import data from another NAL
-	 * @param array NAL to import data from*/
+
+	/**
+	 * Import data from another NAL
+	 * 
+	 * @param array NAL to import data from
+	 */
 	public void merdge(NamedArrayList<T> array)
 	{
-		
+		int x = 0;
+		ArrayList<String> INAL = array.exportNAL();
+		ArrayList<T> IDAL = array.exportDAL();
+		while (INAL.size() != x)
+		{
+			NAL.add(INAL.get(x));
+			x++;
+		}
+		x = 0;
+		while (IDAL.size() != x)
+		{
+			DAL.add(IDAL.get(x));
+			x++;
+		}
+		x = (Integer) null;
+
+		INAL = null;
+		IDAL = null;
+
+	}
+
+	/** Returns the size of NAL */
+	public int size()
+	{
+		return NAL.size();
 	}
 
 	public static double getUtilsVersion()
