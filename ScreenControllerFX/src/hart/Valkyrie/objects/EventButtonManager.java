@@ -1,3 +1,8 @@
+/** Description of MyClass 
+ *
+ * @author Logan Hart
+ * @version V1.2-1.16.20
+ */
 package hart.Valkyrie.objects;
 
 import hart.Valkyrie.exceptions.DuplicateNameException;

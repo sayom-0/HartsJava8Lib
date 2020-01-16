@@ -1,3 +1,9 @@
+/** Description of MyClass 
+ *
+ * @author Logan Hart
+ * @version V1.1-1.16.20
+ */
+
 package hart.Valkyrie.util;
 
 import java.io.File;
@@ -18,16 +24,23 @@ public class DataManager
 
 	private FileOutputStream saveos;
 	private ObjectOutputStream saveoos;
-
+	/**DataLine is a Public NAL that the file is copyed into*/
 	public NamedArrayList DataLine;
 	
 	private File iofile;
+	
+	/**Constructor for DataManager, this links the DataManager's OIS and OOS to the file
+	 * 
+	 * @param ifile A file object
+	 */
 
 	public DataManager(File file)
 	{
 		DataLine = new NamedArrayList();
 		iofile = file;
 	}
+	
+	/**The Load method will copy the NAL from a File into the public DataLine Field*/
 
 	public void load()
 	{
@@ -41,7 +54,7 @@ public class DataManager
 			e.printStackTrace();
 		}
 	}
-
+	/**Writes Dataline into the file*/
 	public void save()
 	{
 		try

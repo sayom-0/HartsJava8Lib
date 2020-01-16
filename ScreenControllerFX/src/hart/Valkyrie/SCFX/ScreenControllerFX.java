@@ -1,5 +1,8 @@
-//Author: Logan Xander Hart
-
+/** Description of MyClass 
+ *
+ * @author Logan Hart
+ * @version V1.8-1.16.20
+ */
 package hart.Valkyrie.SCFX;
 
 import hart.Valkyrie.exceptions.DuplicateNameException;
@@ -12,6 +15,13 @@ import javafx.scene.Node;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+/**
+ * ScreenControllerFX, or SCFX for short is a superclass and was the first major
+ * addition to this library, its goal is to make storing basic javafx data
+ * simpler and easy to manage, it utilizes multiple NAL's as well as module
+ * tie-in's to other classes in the library in order to manage Text, Fonts,
+ * Buttons, Nodes, EventHandlers, Resolutions, and much, much more.
+ */
 public class ScreenControllerFX
 {
 	private static final double SCFX_VERSION = 1.8;
@@ -67,12 +77,12 @@ public class ScreenControllerFX
 	{
 		fonts = ifonts;
 	}
-	
+
 	public NamedArrayList<Text> exportTexts()
 	{
 		return texts;
 	}
-	
+
 	public void importTexts(NamedArrayList<Text> itexts)
 	{
 		texts = itexts;
@@ -170,13 +180,15 @@ public class ScreenControllerFX
 
 	public double centerX(Node t)
 	{
-		System.out.println("CenterX Method is marked for review / deletion, this method may not be functional in newer versions of SCFX");
+		System.out.println(
+				"CenterX Method is marked for review / deletion, this method may not be functional in newer versions of SCFX");
 		return (this.width / 2) - (t.getLayoutBounds().getWidth() / 2);
 	}
 
 	public double centerY(Node t)
 	{
-		System.out.println("CenterY Method is marked for review / deletion, this method may not be functional in newer versions of SCFX");
+		System.out.println(
+				"CenterY Method is marked for review / deletion, this method may not be functional in newer versions of SCFX");
 		return (this.height / 2) - t.getLayoutBounds().getHeight();
 	}
 }

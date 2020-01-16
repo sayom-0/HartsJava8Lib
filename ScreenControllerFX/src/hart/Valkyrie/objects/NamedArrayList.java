@@ -1,5 +1,8 @@
-//Author: Logan Xander Hart
-
+/** Description of MyClass 
+ *
+ * @author Logan Hart
+ * @version V2.2-1.16.20
+ */
 package hart.Valkyrie.objects;
 
 import java.io.Serializable;
@@ -8,16 +11,21 @@ import hart.Valkyrie.exceptions.DuplicateNameException;
 import hart.Valkyrie.exceptions.NonExistantDataException;
 import hart.Valkyrie.util.Utils;
 
+/**
+ * The NamedArrayList(NAL) Class is meant to port the functionality of an
+ * ArrayList into a String indexed ArrayList and is heavily used throughout this
+ * Library, It works by using two normal ArrayLists and adding entrys to both
+ * while relying on them being in-sync to get data back from by scanning the first
+ * for a string value and using the same index on a second array list with the
+ * actual data.
+ */
 public class NamedArrayList<T> implements Serializable
 {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4692623948131600984L;
 	private ArrayList<String> NAL;
 	private ArrayList<T> DAL;
 
-	private final static double NAMEDARRAYLIST_VERSION = 2.0;
+	private final static double NAMEDARRAYLIST_VERSION = 2.2;
 
 	public NamedArrayList()
 	{
@@ -26,6 +34,12 @@ public class NamedArrayList<T> implements Serializable
 		DAL = new ArrayList<T>();
 	}
 
+	/**
+	 * Add data to the NAL
+	 * 
+	 * @param name Name of new Data
+	 * @param data Data to be added to the NAL
+	 */
 	public void add(String name, T data) throws DuplicateNameException
 	{
 		if (Utils.searchArrayList(NAL, name) == -1)
@@ -39,6 +53,11 @@ public class NamedArrayList<T> implements Serializable
 
 	}
 
+	/**
+	 * Get Data from the NAL
+	 * 
+	 * @param name Name of Data to Fetch
+	 */
 	public T get(String name) throws NonExistantDataException
 	{
 		int x = Utils.searchArrayList(NAL, name);
@@ -52,6 +71,12 @@ public class NamedArrayList<T> implements Serializable
 
 	}
 
+	/**
+	 * Set a Already Defined Name to a Different Value
+	 * 
+	 * @param name Name of data to replace
+	 * @param data Data to write over DAL
+	 */
 	public void set(String name, T data) throws NonExistantDataException
 	{
 		if (Utils.searchArrayList(NAL, name) == -1)
@@ -63,6 +88,11 @@ public class NamedArrayList<T> implements Serializable
 		}
 	}
 
+	/**
+	 * Remove a Value from the NAL
+	 * 
+	 * @param name Name of data to remove
+	 */
 	public void remove(String name) throws NonExistantDataException
 	{
 		int x = Utils.searchArrayList(NAL, name);
@@ -76,14 +106,40 @@ public class NamedArrayList<T> implements Serializable
 		}
 	}
 
+	/**
+	 * See if anything is registered in the NAL under a name
+	 * 
+	 * @param name Name to check for
+	 */
 	public boolean contains(String name)
 	{
 		return NAL.contains(name);
 	}
 
+	/**
+	 * Checks if the Internal NAL and DAL are empty (If one is empty both should be,
+	 * but just in case this was somehow horridly broken...)
+	 */
 	public boolean isEmpty()
 	{
 		return NAL.isEmpty() && DAL.isEmpty() ? true : false;
+	}
+	/**Export the Names of all data in AL<String> Format*/
+	public ArrayList<String> exportNAL()
+	{
+		return NAL;
+	}
+	/**Export the Data in NAL in AL<T> Format*/
+	public ArrayList<T> exportDAL()
+	{
+		return DAL;
+	}
+	
+	/**Import data from another NAL
+	 * @param array NAL to import data from*/
+	public void merdge(NamedArrayList<T> array)
+	{
+		
 	}
 
 	public static double getUtilsVersion()
