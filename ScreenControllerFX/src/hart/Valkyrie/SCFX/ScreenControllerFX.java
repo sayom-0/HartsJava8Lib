@@ -31,14 +31,13 @@ public class ScreenControllerFX
 
 	private NamedArrayList<Text> texts;
 	private NamedArrayList<Font> fonts;
-
-	private NamedArrayList<Object> modules;
+	
+	private EventButtonManager ebm;
 
 	private void initd()
 	{
 		texts = new NamedArrayList<Text>();
 		fonts = new NamedArrayList<Font>();
-		modules = new NamedArrayList<Object>();
 	}
 
 	public ScreenControllerFX()
@@ -88,27 +87,15 @@ public class ScreenControllerFX
 		texts = itexts;
 	}
 
-	public void loadModule(String moduleToLoad) throws InvalidMoudleException, DuplicateNameException
-	{
-		switch (moduleToLoad)
-		{
-		case "EventButtonManager":
-			modules.add("EventButtonManager", new EventButtonManager());
-			break;
-
-		default:
-			throw new InvalidMoudleException("Invalid Module Name");
-		}
-	}
-
-	public Object interactModule(String module) throws NonExistantDataException
-	{
-		return modules.get(module);
-	}
-
 	public Text getText(String si) throws NonExistantDataException
 	{
 		return texts.get(si);
+	}
+	
+	public void makeText(String fname, Text itext, Font fn) throws DuplicateNameException, NonExistantDataException
+	{
+		itext.setFont(fn);
+		texts.add(fname, itext);
 	}
 
 	public void makeText(String fname, Text itext, String fn) throws DuplicateNameException, NonExistantDataException

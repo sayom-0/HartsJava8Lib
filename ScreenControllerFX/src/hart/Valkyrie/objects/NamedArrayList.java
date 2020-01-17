@@ -158,10 +158,6 @@ public class NamedArrayList<T> implements Serializable
 			DAL.add(IDAL.get(x));
 			x++;
 		}
-		x = (Integer) null;
-
-		INAL = null;
-		IDAL = null;
 
 	}
 
