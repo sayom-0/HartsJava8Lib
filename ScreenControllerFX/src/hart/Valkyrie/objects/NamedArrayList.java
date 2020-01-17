@@ -170,6 +170,11 @@ public class NamedArrayList<T> implements Serializable
 	{
 		return NAL.size();
 	}
+	
+	public String toString()
+	{
+		return DAL.toString();
+	}
 
 	public static double getUtilsVersion()
 	{

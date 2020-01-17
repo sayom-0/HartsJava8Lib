@@ -70,7 +70,7 @@ public class Utils
 
 		while (counter != obj.length)
 		{
-			output += obj[row][counter];
+			output += obj[counter][row];
 			counter++;
 		}
 
@@ -88,7 +88,7 @@ public class Utils
 
 		while (counter != obj.length)
 		{
-			output += obj[counter][col];
+			output += obj[col][counter];
 			counter++;
 		}
 
