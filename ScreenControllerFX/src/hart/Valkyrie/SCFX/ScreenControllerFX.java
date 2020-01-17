@@ -31,8 +31,6 @@ public class ScreenControllerFX
 
 	private NamedArrayList<Text> texts;
 	private NamedArrayList<Font> fonts;
-	
-	private EventButtonManager ebm;
 
 	private void initd()
 	{

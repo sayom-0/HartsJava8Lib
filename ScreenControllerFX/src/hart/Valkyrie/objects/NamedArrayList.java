@@ -90,7 +90,7 @@ public class NamedArrayList<T> implements Serializable
 
 	/**
 	 * Remove a Value from the NAL
-	 * 
+	 *
 	 * @param name Name of data to remove
 	 */
 	public void remove(String name) throws NonExistantDataException
@@ -166,10 +166,20 @@ public class NamedArrayList<T> implements Serializable
 	{
 		return NAL.size();
 	}
-	
+
+	@Override
 	public String toString()
 	{
-		return DAL.toString();
+		String output = getClass() + "| \n";
+		int x = 0;
+
+		while (NAL.size() != x)
+		{
+			output += "Name : " + NAL.get(x) + " Data : " + DAL.get(x).toString()+" \n";
+			x++;
+		}
+
+		return output;
 	}
 
 	public static double getUtilsVersion()
