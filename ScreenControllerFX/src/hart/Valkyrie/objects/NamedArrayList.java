@@ -170,19 +170,19 @@ public class NamedArrayList<T> implements Serializable
 	@Override
 	public String toString()
 	{
-		String output = getClass() + "| \n";
+		String output = " | NAL | " + getNALVersion() + " | \n";
 		int x = 0;
 
 		while (NAL.size() != x)
 		{
-			output += "Name : " + NAL.get(x) + " Data : " + DAL.get(x).toString()+" \n";
+			output += "Name : " + NAL.get(x) + " Data : " + DAL.get(x).toString() + " \n";
 			x++;
 		}
 
 		return output;
 	}
 
-	public static double getUtilsVersion()
+	public static double getNALVersion()
 	{
 		return NAMEDARRAYLIST_VERSION;
 	}
