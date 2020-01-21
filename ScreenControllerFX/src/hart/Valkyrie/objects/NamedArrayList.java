@@ -17,7 +17,7 @@ import hart.Valkyrie.util.Utils;
  * Library, It works by using two normal ArrayLists and adding entrys to both
  * while relying on them being in-sync to get data back from by scanning the
  * first for a string value and using the same index on a second array list with
- * the actual data.
+ * the actual data. ArrayList is configured to auto trim every time that data is accessed.
  */
 public class NamedArrayList<T> implements Serializable
 {
@@ -165,6 +165,7 @@ public class NamedArrayList<T> implements Serializable
 	/** Returns the size of NAL */
 	public int size()
 	{
+		trim();
 		return NAL.size();
 	}
 
