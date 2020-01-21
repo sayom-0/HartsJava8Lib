@@ -25,7 +25,7 @@ public class NamedArrayList<T> implements Serializable
 	private ArrayList<String> NAL;
 	private ArrayList<T> DAL;
 
-	private final static double NAMEDARRAYLIST_VERSION = 2.3;
+	private final static double NAMEDARRAYLIST_VERSION = 2.4;
 
 	public NamedArrayList()
 	{
@@ -50,7 +50,6 @@ public class NamedArrayList<T> implements Serializable
 		{
 			throw new DuplicateNameException("Name Already Registered in NAL.NAL");
 		}
-
 	}
 
 	/**
@@ -66,6 +65,7 @@ public class NamedArrayList<T> implements Serializable
 			throw new NonExistantDataException("No data is registered in the NAL.NAL under that String value");
 		} else
 		{
+			trim();
 			return DAL.get(x);
 		}
 
@@ -103,6 +103,7 @@ public class NamedArrayList<T> implements Serializable
 		{
 			DAL.remove(x);
 			NAL.remove(x);
+			trim();
 		}
 	}
 
@@ -185,6 +186,12 @@ public class NamedArrayList<T> implements Serializable
 	public static double getNALVersion()
 	{
 		return NAMEDARRAYLIST_VERSION;
+	}
+	
+	private void trim()
+	{
+		NAL.trimToSize();
+		DAL.trimToSize();
 	}
 
 }
