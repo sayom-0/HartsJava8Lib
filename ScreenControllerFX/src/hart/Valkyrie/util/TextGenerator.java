@@ -18,7 +18,7 @@ public class TextGenerator
 		String o = "";
 		for (int loop = 0; length > loop; loop++)
 		{
-			o += names[(int) (r.nextInt(names.length))];
+			o += names[(int) (r.nextInt(names.length))] + " ";
 		}
 
 		return o;
