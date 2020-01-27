@@ -12,9 +12,9 @@ public class TextGenerator
 	public String name(int length)
 	{
 		String o = "";
-		for (int loop = 0; length != loop; loop++)
+		for (int loop = 0; length > loop; loop++)
 		{
-			o += names[(int) (Math.random() * names.length + 1)];
+			o += names[(int) ((Math.random() + 1) * names.length)];
 		}
 
 		return o;
