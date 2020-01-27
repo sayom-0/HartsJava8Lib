@@ -1,12 +1,16 @@
 package hart.Valkyrie.util;
 
+import java.util.Random;
+
 public class TextGenerator
 {
-	String[] names;
+	private String[] names;
+	private Random r;
 
 	public TextGenerator(String[] x)
 	{
 		names = x;
+		r = new Random();
 	}
 
 	public String name(int length)
@@ -14,7 +18,7 @@ public class TextGenerator
 		String o = "";
 		for (int loop = 0; length > loop; loop++)
 		{
-			o += names[(int) ((Math.random() + 1) * names.length)];
+			o += names[(int) (r.nextInt(names.length))];
 		}
 
 		return o;
