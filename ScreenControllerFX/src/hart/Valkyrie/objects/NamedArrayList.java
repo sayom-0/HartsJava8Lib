@@ -31,7 +31,6 @@ public class NamedArrayList<T> implements Serializable
 
 	public NamedArrayList()
 	{
-		super();
 		NAL = new ArrayList<String>();
 		DAL = new ArrayList<T>();
 		trim = true;
@@ -39,7 +38,6 @@ public class NamedArrayList<T> implements Serializable
 
 	public NamedArrayList(boolean flag)
 	{
-		super();
 		NAL = new ArrayList<String>();
 		DAL = new ArrayList<T>();
 		trim = flag;
