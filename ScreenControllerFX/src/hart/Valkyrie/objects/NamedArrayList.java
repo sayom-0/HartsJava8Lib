@@ -17,13 +17,15 @@ import hart.Valkyrie.util.Utils;
  * Library, It works by using two normal ArrayLists and adding entrys to both
  * while relying on them being in-sync to get data back from by scanning the
  * first for a string value and using the same index on a second array list with
- * the actual data. ArrayList is configured to auto trim every time that data is accessed.
+ * the actual data. ArrayList is configured to auto trim every time that data is
+ * accessed.
  */
 public class NamedArrayList<T> implements Serializable
 {
 	private static final long serialVersionUID = 4692623948131600984L;
 	private ArrayList<String> NAL;
 	private ArrayList<T> DAL;
+	private boolean trim;
 
 	private final static double NAMEDARRAYLIST_VERSION = 2.4;
 
@@ -32,6 +34,15 @@ public class NamedArrayList<T> implements Serializable
 		super();
 		NAL = new ArrayList<String>();
 		DAL = new ArrayList<T>();
+		trim = true;
+	}
+
+	public NamedArrayList(boolean flag)
+	{
+		super();
+		NAL = new ArrayList<String>();
+		DAL = new ArrayList<T>();
+		trim = flag;
 	}
 
 	/**
@@ -188,11 +199,14 @@ public class NamedArrayList<T> implements Serializable
 	{
 		return NAMEDARRAYLIST_VERSION;
 	}
-	
+
 	private void trim()
 	{
-		NAL.trimToSize();
-		DAL.trimToSize();
+		if (trim)
+		{
+			NAL.trimToSize();
+			DAL.trimToSize();
+		}
 	}
 
 }
