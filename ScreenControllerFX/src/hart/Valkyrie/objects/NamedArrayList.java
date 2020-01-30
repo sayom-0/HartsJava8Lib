@@ -14,7 +14,7 @@ import hart.Valkyrie.util.Utils;
 /**
  * The NamedArrayList(NAL) Class is meant to port the functionality of an
  * ArrayList into a String indexed ArrayList and is heavily used throughout this
- * Library, It works by using two normal ArrayLists and adding entrys to both
+ * Library, It works by using two normal ArrayLists and adding entry to both
  * while relying on them being in-sync to get data back from by scanning the
  * first for a string value and using the same index on a second array list with
  * the actual data. ArrayList is configured to auto trim every time that data is
@@ -179,7 +179,7 @@ public class NamedArrayList<T> implements Serializable
 		trim();
 		return NAL.size();
 	}
-
+	/** Returns basic output for each registered data key*/
 	@Override
 	public String toString()
 	{

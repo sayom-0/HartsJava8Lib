@@ -1,4 +1,4 @@
-/**
+/**Datamanager is a basic automated way of using a NAL to read and write from a file
  *
  * @author Logan Hart
  * @version V1.1-1.16.20

@@ -1,17 +1,14 @@
 /**
  *
  * @author Logan Hart
- * @version V1.8-1.16.20
+ * @version V1.9
  */
 package hart.Valkyrie.SCFX;
 
 import hart.Valkyrie.exceptions.DuplicateNameException;
 import hart.Valkyrie.exceptions.IllegalDimensionsException;
-import hart.Valkyrie.exceptions.InvalidMoudleException;
 import hart.Valkyrie.exceptions.NonExistantDataException;
-import hart.Valkyrie.objects.EventButtonManager;
 import hart.Valkyrie.objects.NamedArrayList;
-import javafx.scene.Node;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -38,12 +35,17 @@ public class ScreenControllerFX
 		fonts = new NamedArrayList<Font>();
 	}
 
+	/** No-Args Constructor */
 	public ScreenControllerFX()
 	{
 		super();
 		initd();
 	}
 
+	/**
+	 * @param width  Width of Screen
+	 * @param height of Screen
+	 */
 	public ScreenControllerFX(double width, double height) throws IllegalDimensionsException
 	{
 		super();
@@ -65,63 +67,93 @@ public class ScreenControllerFX
 		initd();
 	}
 
+	/** @return returns fonts NAL */
 	public NamedArrayList<Font> exportFonts()
 	{
 		return fonts;
 	}
 
+	/** @param ifonts fonts NAL to load */
 	public void importFonts(NamedArrayList<Font> ifonts)
 	{
 		fonts = ifonts;
 	}
 
+	/** @return Returns Text NAL */
 	public NamedArrayList<Text> exportTexts()
 	{
 		return texts;
 	}
 
+	/** @param itexts Texts NAL to load */
 	public void importTexts(NamedArrayList<Text> itexts)
 	{
 		texts = itexts;
 	}
 
+	/** @param si Name of text to return */
 	public Text getText(String si) throws NonExistantDataException
 	{
 		return texts.get(si);
 	}
-	
+
+	/**
+	 * @param fname name of new text
+	 * @param itext new text object
+	 */
+	public void makeText(String fname, Text itext) throws DuplicateNameException
+	{
+		texts.add(fname, itext);
+	}
+
+	/**
+	 * @param fname name of new text
+	 * @param itext new text object
+	 * @param fn    Font for new Text
+	 */
 	public void makeText(String fname, Text itext, Font fn) throws DuplicateNameException, NonExistantDataException
 	{
 		itext.setFont(fn);
 		texts.add(fname, itext);
 	}
 
+	/**
+	 * @param fname name of new text
+	 * @param itext new text object
+	 * @param fn    String name of Font for new Text
+	 */
 	public void makeText(String fname, Text itext, String fn) throws DuplicateNameException, NonExistantDataException
 	{
 		itext.setFont(getFont(fn));
 		texts.add(fname, itext);
 	}
 
-	public void makeText(String fname, Text itext) throws DuplicateNameException
-	{
-		texts.add(fname, itext);
-	}
-
+	/**
+	 * @param fname Name of text to replace
+	 * @param itext New Text Object
+	 */
 	public void replaceText(String fname, Text itext) throws NonExistantDataException
 	{
 		texts.set(fname, itext);
 	}
+
+	/** @param si Name of font to return */
 
 	public Font getFont(String si) throws NonExistantDataException
 	{
 		return (Font) fonts.get(si);
 	}
 
+	/**
+	 * @param fname Name of font to replace
+	 * @param ifont New Font Object
+	 */
 	public void replaceFont(String fname, Font ifont) throws NonExistantDataException
 	{
 		fonts.set(fname, ifont);
 	}
-
+	/**@param fname Name of new Font
+	 * @param ifont Font object to pass*/
 	public void makeFont(String fname, Font ifont) throws DuplicateNameException
 	{
 		fonts.add(fname, ifont);
@@ -161,19 +193,5 @@ public class ScreenControllerFX
 	public static double getScfxVersion()
 	{
 		return SCFX_VERSION;
-	}
-
-	public double centerX(Node t)
-	{
-		System.out.println(
-				"CenterX Method is marked for review / deletion, this method may not be functional in newer versions of SCFX");
-		return (this.width / 2) - (t.getLayoutBounds().getWidth() / 2);
-	}
-
-	public double centerY(Node t)
-	{
-		System.out.println(
-				"CenterY Method is marked for review / deletion, this method may not be functional in newer versions of SCFX");
-		return (this.height / 2) - t.getLayoutBounds().getHeight();
 	}
 }
