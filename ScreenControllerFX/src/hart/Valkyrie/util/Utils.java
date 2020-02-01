@@ -5,7 +5,7 @@
  */
 package hart.Valkyrie.util;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Utils
 {
@@ -22,7 +22,7 @@ public class Utils
 	 * @param val   Anything that extends Java.lang.Object, this is what the array
 	 *              is searched for.
 	 */
-	public static <T> int searchArrayList(ArrayList<T> array, T val)
+	public static <T> int searchList(List<T> array, T val)
 	{
 		if (array.contains(val))
 		{

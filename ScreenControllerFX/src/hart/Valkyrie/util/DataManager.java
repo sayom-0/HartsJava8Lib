@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import hart.Valkyrie.objects.NamedArrayList;
+import hart.Valkyrie.objects.NamedLists.NamedArrayList;
 
 public class DataManager
 {

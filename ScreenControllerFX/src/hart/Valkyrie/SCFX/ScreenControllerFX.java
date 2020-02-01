@@ -7,7 +7,7 @@ package hart.Valkyrie.SCFX;
 import hart.Valkyrie.exceptions.DuplicateNameException;
 import hart.Valkyrie.exceptions.IllegalDimensionsException;
 import hart.Valkyrie.exceptions.NonExistantDataException;
-import hart.Valkyrie.objects.NamedArrayList;
+import hart.Valkyrie.objects.NamedLists.NamedArrayList;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
