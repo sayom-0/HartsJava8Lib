@@ -31,8 +31,8 @@ public class ScreenControllerFX
 
 	private void initd()
 	{
-		texts = new NamedArrayList<Text>();
-		fonts = new NamedArrayList<Font>();
+		texts = new NamedArrayList<Text>(false);
+		fonts = new NamedArrayList<Font>(false);
 	}
 
 	/** No-Args Constructor */

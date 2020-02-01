@@ -12,15 +12,17 @@ public class Utils
 	private final static double UTILS_VERSION = 1.5;
 
 	/**
-	 * searchArrayList is a simple method, it
-	 * will return a integer value that is the index of where the given value was
-	 * found in the ArrayList. If it could not be found it will return -1
+	 * searchArrayList is a simple method, it will return a integer value that is
+	 * the index of where the given value was found in the ArrayList. If it could
+	 * not be found it will return -1
+	 * 
+	 * @param <T>
 	 * 
 	 * @param array A ArrayList, type is irrelevant.
 	 * @param val   Anything that extends Java.lang.Object, this is what the array
 	 *              is searched for.
 	 */
-	public static int searchArrayList(ArrayList array, Object val)
+	public static <T> int searchArrayList(ArrayList<T> array, T val)
 	{
 		if (array.contains(val))
 		{
@@ -32,15 +34,21 @@ public class Utils
 					return x;
 				} else
 				{
+					if (x == array.size() - 1)
+					{
+						return -1;
+					}
 					x++;
 				}
 			}
+		} else
+		{
+			return -1;
 		}
-
-		return -1;
 	}
 
-	/**getArrayRow will return a entire array row.
+	/**
+	 * getArrayRow will return a entire array row.
 	 * 
 	 * @param row The row to return.
 	 * @param obj the Array to get a row from.
@@ -58,7 +66,9 @@ public class Utils
 
 		return output;
 	}
-	/**getArrayRow will return a entire array row.
+
+	/**
+	 * getArrayRow will return a entire array row.
 	 * 
 	 * @param row The row to return.
 	 * @param obj the Array to get a row from.
@@ -76,7 +86,9 @@ public class Utils
 
 		return output;
 	}
-	/**getArrayCol will return a entire array collum.
+
+	/**
+	 * getArrayCol will return a entire array collum.
 	 * 
 	 * @param col The row to return.
 	 * @param obj the Array to get a collum from.
