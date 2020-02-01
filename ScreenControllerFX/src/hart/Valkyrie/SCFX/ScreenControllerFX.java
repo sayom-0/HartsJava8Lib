@@ -129,6 +129,18 @@ public class ScreenControllerFX
 	}
 
 	/**
+	 * @return Returns a text object built with SCFX syntax
+	 * @param text Text Object to be modifyed
+	 * @param font Name of font
+	 * @throws NonExistantDataException
+	 */
+	public Text buildText(Text text, String font) throws NonExistantDataException
+	{
+		text.setFont(fonts.get(font));
+		return text;
+	}
+
+	/**
 	 * @param fname Name of text to replace
 	 * @param itext New Text Object
 	 */
@@ -152,8 +164,11 @@ public class ScreenControllerFX
 	{
 		fonts.set(fname, ifont);
 	}
-	/**@param fname Name of new Font
-	 * @param ifont Font object to pass*/
+
+	/**
+	 * @param fname Name of new Font
+	 * @param ifont Font object to pass
+	 */
 	public void makeFont(String fname, Font ifont) throws DuplicateNameException
 	{
 		fonts.add(fname, ifont);

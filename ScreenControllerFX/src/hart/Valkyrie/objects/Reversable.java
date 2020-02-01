@@ -7,7 +7,7 @@ public class Reversable<T>
 	
 	public Reversable(T value)
 	{
-		this.last = null;
+		this.last = value;
 		this.value = value;
 	}
 
