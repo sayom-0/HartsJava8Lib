@@ -48,7 +48,10 @@ public class EventButtonManager
 		events = iEvents;
 	}
 
-	/** @return Returns the button registered under that name */
+	/**
+	 * @return Returns the button registered under that name
+	 * @throws NonExistantDataException
+	 */
 	public Button getButton(String si) throws NonExistantDataException
 	{
 		return buttons.get(si);
@@ -57,6 +60,7 @@ public class EventButtonManager
 	/**
 	 * @param fname   Name of button to be replaced
 	 * @param ibutton Button to replace with
+	 * @throws NonExistantDataException
 	 */
 	public void replaceButton(String fname, Button ibutton) throws NonExistantDataException
 	{
@@ -66,6 +70,7 @@ public class EventButtonManager
 	/**
 	 * @param fname   Name to register the button under
 	 * @param ibutton button to register
+	 * @throws DuplicateNameException
 	 */
 	public void makeButton(String fname, Button ibutton) throws DuplicateNameException
 	{
@@ -76,6 +81,7 @@ public class EventButtonManager
 	 * @param fname   Name to register the button under
 	 * @param ibutton button to register
 	 * @param eventh  Event to link to button
+	 * @throws DuplicateNameException
 	 */
 	public void makeButton(String fname, Button ibutton, EventHandler eventh) throws DuplicateNameException
 	{
@@ -87,9 +93,11 @@ public class EventButtonManager
 	 * @param fname   Name to register the button under
 	 * @param ibutton button to register
 	 * @param eventst String to link button to
+	 * @throws NonExistantDataException
+	 * @throws DuplicateNameException
 	 */
 	public void makeButton(String fname, Button ibutton, String eventst)
-			throws DuplicateNameException, NonExistantDataException
+			throws NonExistantDataException, DuplicateNameException
 	{
 		ibutton.setOnAction(events.get(eventst));
 		buttons.add(fname, ibutton);
@@ -97,6 +105,7 @@ public class EventButtonManager
 
 	/**
 	 * @param si String to search EventHandler NAL form
+	 * @throws NonExistantDataException
 	 */
 	public EventHandler getEvent(String si) throws NonExistantDataException
 	{
@@ -106,6 +115,7 @@ public class EventButtonManager
 	/**
 	 * @param fname  Name of Event to be replaced
 	 * @param iEvent new event
+	 * @throws NonExistantDataException
 	 */
 	public void replaceEvent(String fname, EventHandler iEvent) throws NonExistantDataException
 	{
@@ -115,6 +125,7 @@ public class EventButtonManager
 	/**
 	 * @param fname  Name of new Event
 	 * @param iEvent Event Object to be saved
+	 * @throws DuplicateNameException
 	 */
 	public void makeEvent(String fname, EventHandler iEvent) throws DuplicateNameException
 	{
@@ -126,13 +137,17 @@ public class EventButtonManager
 	 * 
 	 * @param buttonName Name of button to be linked
 	 * @param eventName  Name of event to be linked
+	 * @throws NonExistantDataException
 	 */
 	public void makeLink(String buttonName, String eventName) throws NonExistantDataException
 	{
 		(buttons.get(buttonName)).setOnAction(events.get(eventName));
 	}
 
-	/** @param buttonName String name of button to be unlinked */
+	/**
+	 * @param buttonName String name of button to be unlinked
+	 * @throws NonExistantDataException
+	 */
 	public void removeLink(String buttonName) throws NonExistantDataException
 	{
 		(buttons.get(buttonName)).setOnAction(null);

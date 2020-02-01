@@ -1,5 +1,4 @@
 /**
- *
  * @author Logan Hart
  * @version V1.9
  */
@@ -45,6 +44,7 @@ public class ScreenControllerFX
 	/**
 	 * @param width  Width of Screen
 	 * @param height of Screen
+	 * @throws IllegalDimensionsException 
 	 */
 	public ScreenControllerFX(double width, double height) throws IllegalDimensionsException
 	{
@@ -91,7 +91,8 @@ public class ScreenControllerFX
 		texts = itexts;
 	}
 
-	/** @param si Name of text to return */
+	/** @param si Name of text to return 
+	 * @throws NonExistantDataException */
 	public Text getText(String si) throws NonExistantDataException
 	{
 		return texts.get(si);
@@ -100,6 +101,7 @@ public class ScreenControllerFX
 	/**
 	 * @param fname name of new text
 	 * @param itext new text object
+	 * @throws DuplicateNameException 
 	 */
 	public void makeText(String fname, Text itext) throws DuplicateNameException
 	{
@@ -110,8 +112,9 @@ public class ScreenControllerFX
 	 * @param fname name of new text
 	 * @param itext new text object
 	 * @param fn    Font for new Text
+	 * @throws DuplicateNameException 
 	 */
-	public void makeText(String fname, Text itext, Font fn) throws DuplicateNameException, NonExistantDataException
+	public void makeText(String fname, Text itext, Font fn) throws DuplicateNameException 
 	{
 		itext.setFont(fn);
 		texts.add(fname, itext);
@@ -121,6 +124,8 @@ public class ScreenControllerFX
 	 * @param fname name of new text
 	 * @param itext new text object
 	 * @param fn    String name of Font for new Text
+	 * @throws DuplicateNameException 
+	 * @throws NonExistantDataException 
 	 */
 	public void makeText(String fname, Text itext, String fn) throws DuplicateNameException, NonExistantDataException
 	{
@@ -143,13 +148,15 @@ public class ScreenControllerFX
 	/**
 	 * @param fname Name of text to replace
 	 * @param itext New Text Object
+	 * @throws NonExistantDataException 
 	 */
 	public void replaceText(String fname, Text itext) throws NonExistantDataException
 	{
 		texts.set(fname, itext);
 	}
 
-	/** @param si Name of font to return */
+	/** @param si Name of font to return 
+	 * @throws NonExistantDataException */
 
 	public Font getFont(String si) throws NonExistantDataException
 	{
@@ -159,6 +166,7 @@ public class ScreenControllerFX
 	/**
 	 * @param fname Name of font to replace
 	 * @param ifont New Font Object
+	 * @throws NonExistantDataException 
 	 */
 	public void replaceFont(String fname, Font ifont) throws NonExistantDataException
 	{
@@ -168,6 +176,7 @@ public class ScreenControllerFX
 	/**
 	 * @param fname Name of new Font
 	 * @param ifont Font object to pass
+	 * @throws DuplicateNameException 
 	 */
 	public void makeFont(String fname, Font ifont) throws DuplicateNameException
 	{

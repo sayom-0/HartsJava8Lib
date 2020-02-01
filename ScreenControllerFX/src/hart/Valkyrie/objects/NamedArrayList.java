@@ -48,8 +48,9 @@ public class NamedArrayList<T> implements Serializable
 	 * 
 	 * @param name Name of new Data
 	 * @param data Data to be added to the NAL
+	 * @throws DuplicateNameException 
 	 */
-	public void add(String name, T data) throws DuplicateNameException
+	public void add(String name, T data) throws DuplicateNameException 
 	{
 		if (Utils.searchArrayList(NAL, name) == -1)
 		{
@@ -65,8 +66,9 @@ public class NamedArrayList<T> implements Serializable
 	 * Get Data from the NAL
 	 * 
 	 * @param name Name of Data to Fetch
+	 * @throws NonExistantDataException 
 	 */
-	public T get(String name) throws NonExistantDataException
+	public T get(String name) throws NonExistantDataException 
 	{
 		int x = Utils.searchArrayList(NAL, name);
 		if (x == -1)
@@ -85,8 +87,9 @@ public class NamedArrayList<T> implements Serializable
 	 * 
 	 * @param name Name of data to replace
 	 * @param data Data to write over DAL
+	 * @throws NonExistantDataException 
 	 */
-	public void set(String name, T data) throws NonExistantDataException
+	public void set(String name, T data) throws NonExistantDataException 
 	{
 		if (Utils.searchArrayList(NAL, name) == -1)
 		{
@@ -101,6 +104,7 @@ public class NamedArrayList<T> implements Serializable
 	 * Remove a Value from the NAL
 	 *
 	 * @param name Name of data to remove
+	 * @throws NonExistantDataException 
 	 */
 	public void remove(String name) throws NonExistantDataException
 	{
