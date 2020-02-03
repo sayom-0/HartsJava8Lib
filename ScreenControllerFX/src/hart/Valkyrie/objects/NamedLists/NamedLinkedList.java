@@ -3,7 +3,9 @@ package hart.Valkyrie.objects.NamedLists;
 import java.io.Serializable;
 import java.util.LinkedList;
 
-public class NamedLinkedList<T> extends NamedArrayList<T> implements Serializable
+import hart.Valkyrie.objects.NamedList;
+
+public class NamedLinkedList<T> extends NamedList<T> implements Serializable
 {
 
 	/**
@@ -15,13 +17,5 @@ public class NamedLinkedList<T> extends NamedArrayList<T> implements Serializabl
 	{
 		NAL = new LinkedList<String>();
 		DAL = new LinkedList<T>();
-		trim = true;
-	}
-
-	public NamedLinkedList(boolean flag)
-	{
-		NAL = new LinkedList<String>();
-		DAL = new LinkedList<T>();
-		trim = flag;
 	}
 }

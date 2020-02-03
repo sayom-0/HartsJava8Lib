@@ -30,9 +30,8 @@ public abstract class NamedList<T> implements Serializable
 	private static final long serialVersionUID = -2912279328261778349L;
 	protected List<String> NAL;
 	protected List<T> DAL;
-	protected boolean trim;
 
-	private final static double NAMEDLIST_VERSION = 2.4;
+	private final static double NAMEDLIST_VERSION = 3.0;
 
 	/**
 	 * Add data to the NAL

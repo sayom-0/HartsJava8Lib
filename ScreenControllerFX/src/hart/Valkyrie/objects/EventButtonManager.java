@@ -21,8 +21,8 @@ public class EventButtonManager
 	public EventButtonManager()
 	{
 		super();
-		buttons = new NamedArrayList<Button>(false);
-		events = new NamedArrayList<EventHandler>(false);
+		buttons = new NamedArrayList<Button>();
+		events = new NamedArrayList<EventHandler>();
 	}
 
 	/** @return Returns the NAL for Button Objects */

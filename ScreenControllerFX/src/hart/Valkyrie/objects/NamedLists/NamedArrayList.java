@@ -32,13 +32,5 @@ public class NamedArrayList<T> extends NamedList<T> implements Serializable
 	{
 		NAL = new ArrayList<String>();
 		DAL = new ArrayList<T>();
-		trim = true;
-	}
-
-	public NamedArrayList(boolean flag)
-	{
-		NAL = new ArrayList<String>();
-		DAL = new ArrayList<T>();
-		trim = flag;
 	}
 }
