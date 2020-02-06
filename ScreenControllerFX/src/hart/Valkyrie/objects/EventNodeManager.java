@@ -20,8 +20,6 @@ public class EventNodeManager<T extends Node>
 	private NamedArrayList<T> nodes;
 	private NamedArrayList<EventHandler> events;
 	private String tieMethod;
-	private Binding binding;
-	private GroovyShell shell;
 
 	public EventNodeManager(String method)
 	{
@@ -29,8 +27,6 @@ public class EventNodeManager<T extends Node>
 		nodes = new NamedArrayList<>();
 		events = new NamedArrayList<>();
 		tieMethod = method;
-		shell = new GroovyShell(binding);
-		binding = new Binding();
 	}
 
 	/** @return Returns the NAL for T Objects */
@@ -100,7 +96,11 @@ public class EventNodeManager<T extends Node>
 	public T makeButton(String fname, T ibutton, EventHandler eventh)
 			throws DuplicateNameException, NonExistantDataException
 	{
-		shell.evaluate("(ibutton)." + tieMethod + "(eventh);");
+		Binding binding = new Binding();
+		binding.setProperty("ibutton", ibutton);
+		binding.setProperty("eventh", eventh);
+		GroovyShell shell = new GroovyShell(binding);
+		shell.evaluate("($ibutton)." + tieMethod + "($eventh);");
 		nodes.add(fname, ibutton);
 		return nodes.get(fname);
 	}
@@ -115,7 +115,11 @@ public class EventNodeManager<T extends Node>
 	 */
 	public T makeButton(String fname, T ibutton, String eventst) throws NonExistantDataException, DuplicateNameException
 	{
-		shell.evaluate("(ibutton)" + tieMethod + "(events.get(eventst));");
+		Binding binding = new Binding();
+		binding.setProperty("ibutton", ibutton);
+		binding.setProperty("eventst", eventst);
+		GroovyShell shell = new GroovyShell(binding);
+		shell.evaluate("($ibutton)" + tieMethod + "(events.get($eventst));");
 		nodes.add(fname, ibutton);
 		return nodes.get(fname);
 	}
@@ -161,6 +165,10 @@ public class EventNodeManager<T extends Node>
 	 */
 	public void makeLink(String buttonName, String eventName) throws NonExistantDataException
 	{
+		Binding binding = new Binding();
+		binding.setProperty("buttonName", buttonName);
+		binding.setProperty("events", events);
+		GroovyShell shell = new GroovyShell(binding);
 		shell.evaluate("(nodes.get(buttonName))" + tieMethod + "(events.get(eventName));");
 	}
 
@@ -170,7 +178,7 @@ public class EventNodeManager<T extends Node>
 	 */
 	public void removeLink(String buttonName) throws NonExistantDataException
 	{
-		shell.evaluate("(nodes.get(buttonName))"+tieMethod+"(null);");
+		shell.evaluate("(nodes.get(buttonName))" + tieMethod + "(null);");
 	}
 
 	public static double getEventNodeManagerVersion()
