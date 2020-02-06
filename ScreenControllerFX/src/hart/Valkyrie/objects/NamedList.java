@@ -44,8 +44,8 @@ public abstract class NamedList<T> implements Serializable
 	{
 		if (Utils.searchList(NAL, name) == -1)
 		{
-			NAL.add(name);
-			DAL.add(data);
+			this.NAL.add(name);
+			this.DAL.add(data);
 		} else
 		{
 			throw new DuplicateNameException("Name Already Registered in NAL.NAL");
@@ -85,7 +85,7 @@ public abstract class NamedList<T> implements Serializable
 			throw new NonExistantDataException("No data is registered in the NAL.NAL under that String value");
 		} else
 		{
-			DAL.set(Utils.searchList(NAL, name), data);
+			this.DAL.set(Utils.searchList(NAL, name), data);
 		}
 	}
 
@@ -103,8 +103,8 @@ public abstract class NamedList<T> implements Serializable
 			throw new NonExistantDataException("No data is registered in the NAL.NAL under that String value");
 		} else
 		{
-			DAL.remove(x);
-			NAL.remove(x);
+			this.DAL.remove(x);
+			this.NAL.remove(x);
 		}
 	}
 
@@ -115,7 +115,7 @@ public abstract class NamedList<T> implements Serializable
 	 */
 	public boolean contains(String name)
 	{
-		return NAL.contains(name);
+		return this.NAL.contains(name);
 	}
 
 	/**
@@ -124,13 +124,13 @@ public abstract class NamedList<T> implements Serializable
 	 */
 	public boolean isEmpty()
 	{
-		return NAL.isEmpty() && DAL.isEmpty() ? true : false;
+		return this.NAL.isEmpty() && DAL.isEmpty() ? true : false;
 	}
 
 	/** Export the Names of all data in AL<String> Format */
 	public List<String> exportNAL()
 	{
-		return NAL;
+		return this.NAL;
 	}
 
 	/** Export the Data in NAL in AL<T> Format */
@@ -151,13 +151,13 @@ public abstract class NamedList<T> implements Serializable
 		List<T> IDAL = array.exportDAL();
 		while (INAL.size() != x)
 		{
-			NAL.add(INAL.get(x));
+			this.NAL.add(INAL.get(x));
 			x++;
 		}
 		x = 0;
 		while (IDAL.size() != x)
 		{
-			DAL.add(IDAL.get(x));
+			this.DAL.add(IDAL.get(x));
 			x++;
 		}
 
@@ -166,7 +166,7 @@ public abstract class NamedList<T> implements Serializable
 	/** Returns the size of NAL */
 	public int size()
 	{
-		return NAL.size();
+		return this.NAL.size();
 	}
 	/** Returns basic output for each registered data key*/
 	@Override
@@ -177,7 +177,7 @@ public abstract class NamedList<T> implements Serializable
 
 		while (NAL.size() != x)
 		{
-			output += "Name : " + NAL.get(x) + " Data : " + DAL.get(x).toString() + " \n";
+			output += "Name : " + this.NAL.get(x) + " Data : " + this.DAL.get(x).toString() + " \n";
 			x++;
 		}
 

@@ -7,6 +7,8 @@ package hart.Valkyrie.objects.NamedLists;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+
 import hart.Valkyrie.exceptions.DuplicateNameException;
 import hart.Valkyrie.exceptions.NonExistantDataException;
 import hart.Valkyrie.objects.NamedList;
@@ -23,10 +25,13 @@ import hart.Valkyrie.util.Utils;
  */
 public class NamedArrayList<T> extends NamedList<T> implements Serializable
 {
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1883773464711034262L;
+	protected ArrayList<String> NAL;
+	protected ArrayList<T> DAL;
 
 	public NamedArrayList()
 	{
