@@ -1,7 +1,7 @@
 /** EventButtonManager (EBM) is a manager for nodes and eventhandlers that allows you to store, manage, link and unlink eventhandlers and nodes
  *
  * @author Logan Hart
- * @version V1.3
+ * @version V2.0
  */
 package hart.Valkyrie.objects;
 
@@ -15,7 +15,7 @@ import javafx.scene.Node;
 
 public class EventNodeManager<T extends Node>
 {
-	private final static double EVENTBUTTONMANAGER_VERSION = 1.3;
+	private final static double EVENTBUTTONMANAGER_VERSION = 2.0;
 
 	private NamedArrayList<T> nodes;
 	private NamedArrayList<EventHandler> events;
