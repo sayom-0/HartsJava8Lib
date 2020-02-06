@@ -100,7 +100,7 @@ public class EventNodeManager<T extends Node>
 		binding.setProperty("ibutton", ibutton);
 		binding.setProperty("eventh", eventh);
 		GroovyShell shell = new GroovyShell(binding);
-		shell.evaluate("($ibutton)." + tieMethod + "($eventh);");
+		shell.evaluate("(ibutton)." + tieMethod + "(eventh);");
 		nodes.add(fname, ibutton);
 		return nodes.get(fname);
 	}
@@ -120,7 +120,7 @@ public class EventNodeManager<T extends Node>
 		binding.setProperty("events", events);
 		binding.setProperty("eventst", eventst);
 		GroovyShell shell = new GroovyShell(binding);
-		shell.evaluate("($ibutton)" + tieMethod + "($events.get($eventst));");
+		shell.evaluate("(ibutton)" + tieMethod + "(events.get(eventst));");
 		nodes.add(fname, ibutton);
 		return nodes.get(fname);
 	}
@@ -173,7 +173,7 @@ public class EventNodeManager<T extends Node>
 		binding.setProperty("nodes", nodes);
 		binding.setProperty("events", events);
 		GroovyShell shell = new GroovyShell(binding);
-		shell.evaluate("($nodes.get($buttonName))" + tieMethod + "($events.get($eventName));");
+		shell.evaluate("(nodes.get(buttonName))" + tieMethod + "(events.get(eventName));");
 	}
 
 	/**
@@ -186,7 +186,7 @@ public class EventNodeManager<T extends Node>
 		binding.setProperty("buttonName", buttonName);
 		binding.setProperty("nodes", nodes);
 		GroovyShell shell = new GroovyShell(binding);
-		shell.evaluate("($nodes.get($buttonName))" + tieMethod + "(null);");
+		shell.evaluate("(nodes.get(buttonName))" + tieMethod + "(null);");
 	}
 
 	public static double getEventNodeManagerVersion()
