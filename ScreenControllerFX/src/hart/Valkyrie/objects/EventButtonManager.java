@@ -1,7 +1,7 @@
 /** EventButtonManager (EBM) is a manager for buttons and eventhandlers that allows you to store, manage, link and unlink eventhandlers and buttons
  *
  * @author Logan Hart
- * @version V1.2-1.16.20
+ * @version V1.3
  */
 package hart.Valkyrie.objects;
 
@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
 
 public class EventButtonManager
 {
-	private final static double EVENTBUTTONMANAGER_VERSION = 1.2;
+	private final static double EVENTBUTTONMANAGER_VERSION = 1.3;
 
 	private NamedArrayList<Button> buttons;
 	private NamedArrayList<EventHandler> events;
@@ -72,36 +72,44 @@ public class EventButtonManager
 	 * @param fname   Name to register the button under
 	 * @param ibutton button to register
 	 * @throws DuplicateNameException
+	 * @return Button you added
+	 * @throws NonExistantDataException 
 	 */
-	public void makeButton(String fname, Button ibutton) throws DuplicateNameException
+	public Button makeButton(String fname, Button ibutton) throws DuplicateNameException, NonExistantDataException
 	{
 		buttons.add(fname, ibutton);
+		return buttons.get(fname);
 	}
 
 	/**
 	 * @param fname   Name to register the button under
 	 * @param ibutton button to register
 	 * @param eventh  Event to link to button
+	 * @return 
 	 * @throws DuplicateNameException
+	 * @throws NonExistantDataException 
 	 */
-	public void makeButton(String fname, Button ibutton, EventHandler eventh) throws DuplicateNameException
+	public Button makeButton(String fname, Button ibutton, EventHandler eventh) throws DuplicateNameException, NonExistantDataException
 	{
 		ibutton.setOnAction(eventh);
 		buttons.add(fname, ibutton);
+		return buttons.get(fname);
 	}
 
 	/**
 	 * @param fname   Name to register the button under
 	 * @param ibutton button to register
 	 * @param eventst String to link button to
+	 * @return 
 	 * @throws NonExistantDataException
 	 * @throws DuplicateNameException
 	 */
-	public void makeButton(String fname, Button ibutton, String eventst)
+	public Button makeButton(String fname, Button ibutton, String eventst)
 			throws NonExistantDataException, DuplicateNameException
 	{
 		ibutton.setOnAction(events.get(eventst));
 		buttons.add(fname, ibutton);
+		return buttons.get(fname);
 	}
 
 	/**
@@ -127,10 +135,12 @@ public class EventButtonManager
 	 * @param fname  Name of new Event
 	 * @param iEvent Event Object to be saved
 	 * @throws DuplicateNameException
+	 * @throws NonExistantDataException 
 	 */
-	public void makeEvent(String fname, EventHandler iEvent) throws DuplicateNameException
+	public EventHandler makeEvent(String fname, EventHandler iEvent) throws DuplicateNameException, NonExistantDataException
 	{
 		events.add(fname, iEvent);
+		return events.get(fname);
 	}
 
 	/**

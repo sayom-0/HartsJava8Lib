@@ -20,7 +20,7 @@ import javafx.scene.text.Text;
  */
 public class ScreenControllerFX
 {
-	private static final double SCFX_VERSION = 1.8;
+	private static final double SCFX_VERSION = 1.9;
 
 	private double width;
 	private double height;
@@ -92,7 +92,8 @@ public class ScreenControllerFX
 	}
 
 	/** @param si Name of text to return 
-	 * @throws NonExistantDataException */
+	 * @throws NonExistantDataException 
+	 * @return Text that was just made*/
 	public Text getText(String si) throws NonExistantDataException
 	{
 		return texts.get(si);
@@ -102,35 +103,43 @@ public class ScreenControllerFX
 	 * @param fname name of new text
 	 * @param itext new text object
 	 * @throws DuplicateNameException 
+	 * @throws NonExistantDataException 
+	 * @return Text that was just made
 	 */
-	public void makeText(String fname, Text itext) throws DuplicateNameException
+	public Text makeText(String fname, Text itext) throws DuplicateNameException, NonExistantDataException
 	{
 		texts.add(fname, itext);
+		return texts.get(fname);
 	}
 
 	/**
 	 * @param fname name of new text
 	 * @param itext new text object
 	 * @param fn    Font for new Text
+	 * @return Text that was just made
 	 * @throws DuplicateNameException 
+	 * @throws NonExistantDataException 
 	 */
-	public void makeText(String fname, Text itext, Font fn) throws DuplicateNameException 
+	public Text makeText(String fname, Text itext, Font fn) throws DuplicateNameException, NonExistantDataException 
 	{
 		itext.setFont(fn);
 		texts.add(fname, itext);
+		return texts.get(fname);
 	}
 
 	/**
 	 * @param fname name of new text
 	 * @param itext new text object
 	 * @param fn    String name of Font for new Text
+	 * @return Text that was just made
 	 * @throws DuplicateNameException 
 	 * @throws NonExistantDataException 
 	 */
-	public void makeText(String fname, Text itext, String fn) throws DuplicateNameException, NonExistantDataException
+	public Text makeText(String fname, Text itext, String fn) throws DuplicateNameException, NonExistantDataException
 	{
 		itext.setFont(getFont(fn));
 		texts.add(fname, itext);
+		return texts.get(fname);
 	}
 
 	/**
@@ -138,6 +147,7 @@ public class ScreenControllerFX
 	 * @param text Text Object to be modifyed
 	 * @param font Name of font
 	 * @throws NonExistantDataException
+	 * @return Text that you made
 	 */
 	public Text buildText(Text text, String font) throws NonExistantDataException
 	{
@@ -156,7 +166,8 @@ public class ScreenControllerFX
 	}
 
 	/** @param si Name of font to return 
-	 * @throws NonExistantDataException */
+	 * @throws NonExistantDataException 
+	 * @return Font that you searched for*/
 
 	public Font getFont(String si) throws NonExistantDataException
 	{
@@ -176,11 +187,15 @@ public class ScreenControllerFX
 	/**
 	 * @param fname Name of new Font
 	 * @param ifont Font object to pass
+	 * @return 
 	 * @throws DuplicateNameException 
+	 * @throws NonExistantDataException 
+	 * @return Font that you made
 	 */
-	public void makeFont(String fname, Font ifont) throws DuplicateNameException
+	public Font makeFont(String fname, Font ifont) throws DuplicateNameException, NonExistantDataException
 	{
 		fonts.add(fname, ifont);
+		return fonts.get(fname);
 	}
 
 	public void setRes(String si, double i)
