@@ -11,8 +11,7 @@ import hart.Valkyrie.exceptions.DuplicateNameException;
 import hart.Valkyrie.exceptions.NonExistantDataException;
 import hart.Valkyrie.objects.NamedLists.NamedArrayList;
 import javafx.event.EventHandler;
-import javafx.scene.*;
-import javafx.scene.control.*;
+import javafx.scene.Node;
 
 public class EventNodeManager<T extends Node>
 {
