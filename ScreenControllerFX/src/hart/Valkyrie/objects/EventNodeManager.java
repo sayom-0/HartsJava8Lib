@@ -10,9 +10,9 @@ import hart.Valkyrie.exceptions.NonExistantDataException;
 import hart.Valkyrie.objects.NamedLists.NamedArrayList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBase;
 
-public class EventNodeManager<T >
+public class EventNodeManager<T extends Node>
 {
 	private final static double EVENTBUTTONMANAGER_VERSION = 1.3;
 
@@ -26,14 +26,14 @@ public class EventNodeManager<T >
 		events = new NamedArrayList<>();
 	}
 
-	/** @return Returns the NAL for Button Objects */
-	public NamedArrayList<Button> exportnodes()
+	/** @return Returns the NAL for T Objects */
+	public NamedArrayList<T> exportnodes()
 	{
 		return nodes;
 	}
 
 	/** @param inodes Import a NAL from nodes from another EBM */
-	public void importnodes(NamedArrayList<Button> inodes)
+	public void importnodes(NamedArrayList<T> inodes)
 	{
 		nodes = inodes;
 	}
@@ -51,64 +51,64 @@ public class EventNodeManager<T >
 	}
 
 	/**
-	 * @return Returns the button registered under that name
+	 * @return Returns the T registered under that name
 	 * @throws NonExistantDataException
 	 */
-	public Button getButton(String si) throws NonExistantDataException
+	public T getButton(String si) throws NonExistantDataException
 	{
 		return nodes.get(si);
 	}
 
 	/**
-	 * @param fname   Name of button to be replaced
-	 * @param ibutton Button to replace with
+	 * @param fname   Name of T to be replaced
+	 * @param ibutton T to replace with
 	 * @throws NonExistantDataException
 	 */
-	public void replaceButton(String fname, Button ibutton) throws NonExistantDataException
+	public void replaceButton(String fname, T ibutton) throws NonExistantDataException
 	{
 		nodes.set(fname, ibutton);
 	}
 
 	/**
-	 * @param fname   Name to register the button under
-	 * @param ibutton button to register
+	 * @param fname   Name to register the T under
+	 * @param ibutton T to register
 	 * @throws DuplicateNameException
-	 * @return Button you added
+	 * @return T you added
 	 * @throws NonExistantDataException 
 	 */
-	public Button makeButton(String fname, Button ibutton) throws DuplicateNameException, NonExistantDataException
+	public T makeButton(String fname, T ibutton) throws DuplicateNameException, NonExistantDataException
 	{
 		nodes.add(fname, ibutton);
 		return nodes.get(fname);
 	}
 
 	/**
-	 * @param fname   Name to register the button under
-	 * @param ibutton button to register
-	 * @param eventh  Event to link to button
+	 * @param fname   Name to register the T under
+	 * @param ibutton T to register
+	 * @param eventh  Event to link to T
 	 * @return 
 	 * @throws DuplicateNameException
 	 * @throws NonExistantDataException 
 	 */
-	public Button makeButton(String fname, Button ibutton, EventHandler eventh) throws DuplicateNameException, NonExistantDataException
+	public T makeButton(String fname, T ibutton, EventHandler eventh) throws DuplicateNameException, NonExistantDataException
 	{
-		ibutton.setOnAction(eventh);
+		((ButtonBase) ibutton).setOnAction(eventh);
 		nodes.add(fname, ibutton);
 		return nodes.get(fname);
 	}
 
 	/**
-	 * @param fname   Name to register the button under
-	 * @param ibutton button to register
-	 * @param eventst String to link button to
+	 * @param fname   Name to register the T under
+	 * @param ibutton T to register
+	 * @param eventst String to link T to
 	 * @return 
 	 * @throws NonExistantDataException
 	 * @throws DuplicateNameException
 	 */
-	public Button makeButton(String fname, Button ibutton, String eventst)
+	public T makeButton(String fname, T ibutton, String eventst)
 			throws NonExistantDataException, DuplicateNameException
 	{
-		ibutton.setOnAction(events.get(eventst));
+		((ButtonBase) ibutton).setOnAction(events.get(eventst));
 		nodes.add(fname, ibutton);
 		return nodes.get(fname);
 	}
@@ -147,22 +147,22 @@ public class EventNodeManager<T >
 	/**
 	 * Link two pre-registered nodes and event
 	 * 
-	 * @param buttonName Name of button to be linked
+	 * @param buttonName Name of T to be linked
 	 * @param eventName  Name of event to be linked
 	 * @throws NonExistantDataException
 	 */
 	public void makeLink(String buttonName, String eventName) throws NonExistantDataException
 	{
-		(nodes.get(buttonName)).setOnAction(events.get(eventName));
+		((ButtonBase) nodes.get(buttonName)).setOnAction(events.get(eventName));
 	}
 
 	/**
-	 * @param buttonName String name of button to be unlinked
+	 * @param buttonName String name of T to be unlinked
 	 * @throws NonExistantDataException
 	 */
 	public void removeLink(String buttonName) throws NonExistantDataException
 	{
-		(nodes.get(buttonName)).setOnAction(null);
+		((ButtonBase) nodes.get(buttonName)).setOnAction(null);
 	}
 
 	public static double getEventbuttonmanagerVersion()

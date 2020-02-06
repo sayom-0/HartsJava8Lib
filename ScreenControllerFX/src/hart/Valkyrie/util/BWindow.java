@@ -6,7 +6,6 @@
 package hart.Valkyrie.util;
 
 import hart.Valkyrie.SCFX.ScreenControllerFX;
-import hart.Valkyrie.objects.EventButtonManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -14,7 +13,6 @@ import javafx.stage.Stage;
 public abstract class BWindow extends Application
 {
 	protected ScreenControllerFX SCFX;
-	protected EventButtonManager ebm;
 	protected Scene scene;
 	
 	/**Replacement for launch();*/
