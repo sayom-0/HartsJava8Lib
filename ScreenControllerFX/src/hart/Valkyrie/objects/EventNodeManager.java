@@ -117,9 +117,10 @@ public class EventNodeManager<T extends Node>
 	{
 		Binding binding = new Binding();
 		binding.setProperty("ibutton", ibutton);
+		binding.setProperty("events", events);
 		binding.setProperty("eventst", eventst);
 		GroovyShell shell = new GroovyShell(binding);
-		shell.evaluate("($ibutton)" + tieMethod + "(events.get($eventst));");
+		shell.evaluate("($ibutton)" + tieMethod + "($events.get($eventst));");
 		nodes.add(fname, ibutton);
 		return nodes.get(fname);
 	}
@@ -167,9 +168,12 @@ public class EventNodeManager<T extends Node>
 	{
 		Binding binding = new Binding();
 		binding.setProperty("buttonName", buttonName);
+		binding.setProperty("eventName", eventName);
+		
+		binding.setProperty("nodes", nodes);
 		binding.setProperty("events", events);
 		GroovyShell shell = new GroovyShell(binding);
-		shell.evaluate("(nodes.get(buttonName))" + tieMethod + "(events.get(eventName));");
+		shell.evaluate("($nodes.get($buttonName))" + tieMethod + "($events.get($eventName));");
 	}
 
 	/**
@@ -178,7 +182,11 @@ public class EventNodeManager<T extends Node>
 	 */
 	public void removeLink(String buttonName) throws NonExistantDataException
 	{
-		shell.evaluate("(nodes.get(buttonName))" + tieMethod + "(null);");
+		Binding binding = new Binding();
+		binding.setProperty("buttonName", buttonName);
+		binding.setProperty("nodes", nodes);
+		GroovyShell shell = new GroovyShell(binding);
+		shell.evaluate("($nodes.get($buttonName))" + tieMethod + "(null);");
 	}
 
 	public static double getEventNodeManagerVersion()
