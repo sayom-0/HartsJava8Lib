@@ -1,4 +1,4 @@
-/** EventButtonManager (EBM) is a manager for buttons and eventhandlers that allows you to store, manage, link and unlink eventhandlers and buttons
+/** EventButtonManager (EBM) is a manager for nodes and eventhandlers that allows you to store, manage, link and unlink eventhandlers and nodes
  *
  * @author Logan Hart
  * @version V1.3
@@ -9,32 +9,33 @@ import hart.Valkyrie.exceptions.DuplicateNameException;
 import hart.Valkyrie.exceptions.NonExistantDataException;
 import hart.Valkyrie.objects.NamedLists.NamedArrayList;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 
-public class EventButtonManager
+public class EventNodeManager<T >
 {
 	private final static double EVENTBUTTONMANAGER_VERSION = 1.3;
 
-	private NamedArrayList<Button> buttons;
+	private NamedArrayList<T> nodes;
 	private NamedArrayList<EventHandler> events;
 
-	public EventButtonManager()
+	public EventNodeManager()
 	{
 		super();
-		buttons = new NamedArrayList<Button>();
-		events = new NamedArrayList<EventHandler>();
+		nodes = new NamedArrayList<>();
+		events = new NamedArrayList<>();
 	}
 
 	/** @return Returns the NAL for Button Objects */
-	public NamedArrayList<Button> exportButtons()
+	public NamedArrayList<Button> exportnodes()
 	{
-		return buttons;
+		return nodes;
 	}
 
-	/** @param ibuttons Import a NAL from Buttons from another EBM */
-	public void importButtons(NamedArrayList<Button> ibuttons)
+	/** @param inodes Import a NAL from nodes from another EBM */
+	public void importnodes(NamedArrayList<Button> inodes)
 	{
-		buttons = ibuttons;
+		nodes = inodes;
 	}
 
 	/** @return Returns the NAL for Event Handlers */
@@ -55,7 +56,7 @@ public class EventButtonManager
 	 */
 	public Button getButton(String si) throws NonExistantDataException
 	{
-		return buttons.get(si);
+		return nodes.get(si);
 	}
 
 	/**
@@ -65,7 +66,7 @@ public class EventButtonManager
 	 */
 	public void replaceButton(String fname, Button ibutton) throws NonExistantDataException
 	{
-		buttons.set(fname, ibutton);
+		nodes.set(fname, ibutton);
 	}
 
 	/**
@@ -77,8 +78,8 @@ public class EventButtonManager
 	 */
 	public Button makeButton(String fname, Button ibutton) throws DuplicateNameException, NonExistantDataException
 	{
-		buttons.add(fname, ibutton);
-		return buttons.get(fname);
+		nodes.add(fname, ibutton);
+		return nodes.get(fname);
 	}
 
 	/**
@@ -92,8 +93,8 @@ public class EventButtonManager
 	public Button makeButton(String fname, Button ibutton, EventHandler eventh) throws DuplicateNameException, NonExistantDataException
 	{
 		ibutton.setOnAction(eventh);
-		buttons.add(fname, ibutton);
-		return buttons.get(fname);
+		nodes.add(fname, ibutton);
+		return nodes.get(fname);
 	}
 
 	/**
@@ -108,8 +109,8 @@ public class EventButtonManager
 			throws NonExistantDataException, DuplicateNameException
 	{
 		ibutton.setOnAction(events.get(eventst));
-		buttons.add(fname, ibutton);
-		return buttons.get(fname);
+		nodes.add(fname, ibutton);
+		return nodes.get(fname);
 	}
 
 	/**
@@ -144,7 +145,7 @@ public class EventButtonManager
 	}
 
 	/**
-	 * Link two pre-registered buttons and event
+	 * Link two pre-registered nodes and event
 	 * 
 	 * @param buttonName Name of button to be linked
 	 * @param eventName  Name of event to be linked
@@ -152,7 +153,7 @@ public class EventButtonManager
 	 */
 	public void makeLink(String buttonName, String eventName) throws NonExistantDataException
 	{
-		(buttons.get(buttonName)).setOnAction(events.get(eventName));
+		(nodes.get(buttonName)).setOnAction(events.get(eventName));
 	}
 
 	/**
@@ -161,7 +162,7 @@ public class EventButtonManager
 	 */
 	public void removeLink(String buttonName) throws NonExistantDataException
 	{
-		(buttons.get(buttonName)).setOnAction(null);
+		(nodes.get(buttonName)).setOnAction(null);
 	}
 
 	public static double getEventbuttonmanagerVersion()
