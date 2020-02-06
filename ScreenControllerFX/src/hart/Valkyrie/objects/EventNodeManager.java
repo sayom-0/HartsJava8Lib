@@ -5,12 +5,13 @@
  */
 package hart.Valkyrie.objects;
 
+import groovy.lang.Binding;
+import groovy.lang.GroovyShell;
 import hart.Valkyrie.exceptions.DuplicateNameException;
 import hart.Valkyrie.exceptions.NonExistantDataException;
 import hart.Valkyrie.objects.NamedLists.NamedArrayList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.control.ButtonBase;
 
 public class EventNodeManager<T extends Node>
 {
@@ -18,12 +19,18 @@ public class EventNodeManager<T extends Node>
 
 	private NamedArrayList<T> nodes;
 	private NamedArrayList<EventHandler> events;
+	private String tieMethod;
+	private Binding binding;
+	private GroovyShell shell;
 
-	public EventNodeManager()
+	public EventNodeManager(String method)
 	{
 		super();
 		nodes = new NamedArrayList<>();
 		events = new NamedArrayList<>();
+		tieMethod = method;
+		shell = new GroovyShell(binding);
+		binding = new Binding();
 	}
 
 	/** @return Returns the NAL for T Objects */
@@ -74,7 +81,7 @@ public class EventNodeManager<T extends Node>
 	 * @param ibutton T to register
 	 * @throws DuplicateNameException
 	 * @return T you added
-	 * @throws NonExistantDataException 
+	 * @throws NonExistantDataException
 	 */
 	public T makeButton(String fname, T ibutton) throws DuplicateNameException, NonExistantDataException
 	{
@@ -86,13 +93,14 @@ public class EventNodeManager<T extends Node>
 	 * @param fname   Name to register the T under
 	 * @param ibutton T to register
 	 * @param eventh  Event to link to T
-	 * @return 
+	 * @return Object made
 	 * @throws DuplicateNameException
-	 * @throws NonExistantDataException 
+	 * @throws NonExistantDataException
 	 */
-	public T makeButton(String fname, T ibutton, EventHandler eventh) throws DuplicateNameException, NonExistantDataException
+	public T makeButton(String fname, T ibutton, EventHandler eventh)
+			throws DuplicateNameException, NonExistantDataException
 	{
-		((ButtonBase) ibutton).setOnAction(eventh);
+		shell.evaluate("(ibutton)." + tieMethod + "(eventh);");
 		nodes.add(fname, ibutton);
 		return nodes.get(fname);
 	}
@@ -101,14 +109,13 @@ public class EventNodeManager<T extends Node>
 	 * @param fname   Name to register the T under
 	 * @param ibutton T to register
 	 * @param eventst String to link T to
-	 * @return 
+	 * @return Object made
 	 * @throws NonExistantDataException
 	 * @throws DuplicateNameException
 	 */
-	public T makeButton(String fname, T ibutton, String eventst)
-			throws NonExistantDataException, DuplicateNameException
+	public T makeButton(String fname, T ibutton, String eventst) throws NonExistantDataException, DuplicateNameException
 	{
-		((ButtonBase) ibutton).setOnAction(events.get(eventst));
+		shell.evaluate("(ibutton)" + tieMethod + "(events.get(eventst));");
 		nodes.add(fname, ibutton);
 		return nodes.get(fname);
 	}
@@ -136,9 +143,10 @@ public class EventNodeManager<T extends Node>
 	 * @param fname  Name of new Event
 	 * @param iEvent Event Object to be saved
 	 * @throws DuplicateNameException
-	 * @throws NonExistantDataException 
+	 * @throws NonExistantDataException
 	 */
-	public EventHandler makeEvent(String fname, EventHandler iEvent) throws DuplicateNameException, NonExistantDataException
+	public EventHandler makeEvent(String fname, EventHandler iEvent)
+			throws DuplicateNameException, NonExistantDataException
 	{
 		events.add(fname, iEvent);
 		return events.get(fname);
@@ -153,7 +161,7 @@ public class EventNodeManager<T extends Node>
 	 */
 	public void makeLink(String buttonName, String eventName) throws NonExistantDataException
 	{
-		((ButtonBase) nodes.get(buttonName)).setOnAction(events.get(eventName));
+		shell.evaluate("(nodes.get(buttonName))" + tieMethod + "(events.get(eventName));");
 	}
 
 	/**
@@ -162,10 +170,10 @@ public class EventNodeManager<T extends Node>
 	 */
 	public void removeLink(String buttonName) throws NonExistantDataException
 	{
-		((ButtonBase) nodes.get(buttonName)).setOnAction(null);
+		shell.evaluate("(nodes.get(buttonName))"+tieMethod+"(null);");
 	}
 
-	public static double getEventbuttonmanagerVersion()
+	public static double getEventNodeManagerVersion()
 	{
 		return EVENTBUTTONMANAGER_VERSION;
 	}

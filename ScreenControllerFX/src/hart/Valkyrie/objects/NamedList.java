@@ -42,7 +42,7 @@ public abstract class NamedList<T> implements Serializable
 	 */
 	public void add(String name, T data) throws DuplicateNameException 
 	{
-		if (Utils.searchList(NAL, name) == -1)
+		if (Utils.searchList(this.NAL, name) == -1)
 		{
 			this.NAL.add(name);
 			this.DAL.add(data);
