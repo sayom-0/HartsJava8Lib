@@ -172,7 +172,7 @@ public abstract class NamedList<T> implements Serializable
 	@Override
 	public String toString()
 	{
-		String output = " | NAL | " + getNLVersion() + " | \n";
+		String output = " | NL | " + getNLVersion() + " | \n";
 		int x = 0;
 
 		while (NAL.size() != x)
