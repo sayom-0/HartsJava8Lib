@@ -5,13 +5,12 @@
  */
 package hart.Valkyrie.objects;
 
-import groovy.lang.Binding;
-import groovy.lang.GroovyShell;
 import hart.Valkyrie.exceptions.DuplicateNameException;
 import hart.Valkyrie.exceptions.NonExistantDataException;
 import hart.Valkyrie.objects.NamedLists.NamedArrayList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import net.openhft.compiler.CompilerUtils;
 
 public class EventNodeManager<T extends Node>
 {
@@ -92,15 +91,19 @@ public class EventNodeManager<T extends Node>
 	 * @return Object made
 	 * @throws DuplicateNameException
 	 * @throws NonExistantDataException
+	 * @throws ClassNotFoundException
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
 	 */
-	public T makeButton(String fname, T ibutton, EventHandler eventh)
-			throws DuplicateNameException, NonExistantDataException
+	public T makeButton(String fname, T ibutton, EventHandler eventh) throws DuplicateNameException,
+			NonExistantDataException, ClassNotFoundException, InstantiationException, IllegalAccessException
 	{
-		Binding binding = new Binding();
-		binding.setProperty("ibutton", ibutton);
-		binding.setProperty("eventh", eventh);
-		GroovyShell shell = new GroovyShell(binding);
-		shell.evaluate("(ibutton)." + tieMethod + "(eventh);");
+		String className = "mypackage.MyClass";
+		String javaCode = "package mypackage;\n" + "public class MyClass implements Runnable {\n"
+				+ "    public void run() {\n" + "ibutton." + tieMethod + "(eventh);\n" + "    }\n" + "}\n";
+		Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode);
+		Runnable runner = (Runnable) aClass.newInstance();
+		runner.run();
 		nodes.add(fname, ibutton);
 		return nodes.get(fname);
 	}
@@ -112,15 +115,19 @@ public class EventNodeManager<T extends Node>
 	 * @return Object made
 	 * @throws NonExistantDataException
 	 * @throws DuplicateNameException
+	 * @throws ClassNotFoundException
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
 	 */
-	public T makeButton(String fname, T ibutton, String eventst) throws NonExistantDataException, DuplicateNameException
+	public T makeButton(String fname, T ibutton, String eventst) throws NonExistantDataException,
+			DuplicateNameException, ClassNotFoundException, InstantiationException, IllegalAccessException
 	{
-		Binding binding = new Binding();
-		binding.setProperty("ibutton", ibutton);
-		binding.setProperty("events", events);
-		binding.setProperty("eventst", eventst);
-		GroovyShell shell = new GroovyShell(binding);
-		shell.evaluate("(ibutton)" + tieMethod + "(events.get(eventst));");
+		String className = "mypackage.MyClass";
+		String javaCode = "package mypackage;\n" + "public class MyClass implements Runnable {\n"
+				+ "    public void run() {\n" + "ibutton." + tieMethod + "(events.get(eventst));\n" + "    }\n" + "}\n";
+		Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode);
+		Runnable runner = (Runnable) aClass.newInstance();
+		runner.run();
 		nodes.add(fname, ibutton);
 		return nodes.get(fname);
 	}
@@ -163,30 +170,37 @@ public class EventNodeManager<T extends Node>
 	 * @param buttonName Name of T to be linked
 	 * @param eventName  Name of event to be linked
 	 * @throws NonExistantDataException
+	 * @throws ClassNotFoundException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
 	 */
-	public void makeLink(String buttonName, String eventName) throws NonExistantDataException
+	public void makeLink(String buttonName, String eventName) throws NonExistantDataException, ClassNotFoundException, InstantiationException, IllegalAccessException
 	{
-		Binding binding = new Binding();
-		binding.setProperty("buttonName", buttonName);
-		binding.setProperty("eventName", eventName);
-		
-		binding.setProperty("nodes", nodes);
-		binding.setProperty("events", events);
-		GroovyShell shell = new GroovyShell(binding);
-		shell.evaluate("(nodes.get(buttonName))" + tieMethod + "(events.get(eventName));");
+		String className = "mypackage.MyClass";
+		String javaCode = "package mypackage;\n" + "public class MyClass implements Runnable {\n"
+				+ "    public void run() {\n" + "nodes.get(buttonName)." + tieMethod + "(events.get(eventName));\n"
+				+ "    }\n" + "}\n";
+		Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode);
+		Runnable runner = (Runnable) aClass.newInstance();
+		runner.run();
 	}
 
 	/**
 	 * @param buttonName String name of T to be unlinked
 	 * @throws NonExistantDataException
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 * @throws ClassNotFoundException 
 	 */
-	public void removeLink(String buttonName) throws NonExistantDataException
+	public void removeLink(String buttonName) throws NonExistantDataException, InstantiationException, IllegalAccessException, ClassNotFoundException
 	{
-		Binding binding = new Binding();
-		binding.setProperty("buttonName", buttonName);
-		binding.setProperty("nodes", nodes);
-		GroovyShell shell = new GroovyShell(binding);
-		shell.evaluate("(nodes.get(buttonName))" + tieMethod + "(null);");
+		String className = "mypackage.MyClass";
+		String javaCode = "package mypackage;\n" + "public class MyClass implements Runnable {\n"
+				+ "    public void run() {\n" + "nodes.get(buttonName)." + tieMethod + "(null);\n"
+				+ "    }\n" + "}\n";
+		Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode);
+		Runnable runner = (Runnable) aClass.newInstance();
+		runner.run();
 	}
 
 	public static double getEventNodeManagerVersion()
