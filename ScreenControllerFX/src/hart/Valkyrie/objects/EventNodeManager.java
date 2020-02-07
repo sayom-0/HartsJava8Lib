@@ -7,7 +7,6 @@ package hart.Valkyrie.objects;
 
 import java.io.File;
 import java.io.IOException;
-
 import hart.Valkyrie.exceptions.DuplicateNameException;
 import hart.Valkyrie.exceptions.NonExistantDataException;
 import hart.Valkyrie.objects.NamedLists.NamedArrayList;
