@@ -15,7 +15,7 @@ import java.io.ObjectOutputStream;
 
 import hart.Valkyrie.objects.NamedLists.NamedArrayList;
 
-public class DataManager
+public class DataManager<T>
 {
 	private final static double DATAMANAGER_VERSION = 1.1;
 
@@ -25,19 +25,21 @@ public class DataManager
 	private FileOutputStream saveos;
 	private ObjectOutputStream saveoos;
 	/**DataLine is a Public NAL that the file is copyed into*/
-	public NamedArrayList DataLine;
+	public NamedArrayList<T> DataLine;
 	
 	private File iofile;
 	
 	/**Constructor for DataManager, this links the DataManager's OIS and OOS to the file
 	 * 
 	 * @param ifile A file object
+	 * @throws IOException 
 	 */
 
-	public DataManager(File file)
+	public DataManager(File file) throws IOException
 	{
-		DataLine = new NamedArrayList();
+		DataLine = new NamedArrayList<>();
 		iofile = file;
+		iofile.createNewFile();
 	}
 	
 	/**The Load method will copy the NAL from a File into the public DataLine Field*/
@@ -48,7 +50,7 @@ public class DataManager
 		{
 			fis = new FileInputStream(iofile);
 			ois = new ObjectInputStream(fis);
-			DataLine = (NamedArrayList) ois.readObject();
+			DataLine = (NamedArrayList<T>) ois.readObject();
 		} catch (IOException | ClassNotFoundException e)
 		{
 			e.printStackTrace();
@@ -59,6 +61,8 @@ public class DataManager
 	{
 		try
 		{
+			iofile.delete();
+			iofile.createNewFile();
 			saveos = new FileOutputStream(iofile);
 			saveoos = new ObjectOutputStream(saveos);
 			saveoos.writeObject(DataLine);

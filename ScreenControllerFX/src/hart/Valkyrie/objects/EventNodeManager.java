@@ -5,9 +5,14 @@
  */
 package hart.Valkyrie.objects;
 
+import java.io.File;
+import java.io.IOException;
+
 import hart.Valkyrie.exceptions.DuplicateNameException;
 import hart.Valkyrie.exceptions.NonExistantDataException;
 import hart.Valkyrie.objects.NamedLists.NamedArrayList;
+import hart.Valkyrie.util.DataManager;
+import hart.Valkyrie.util.GenericData;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import net.openhft.compiler.CompilerUtils;
@@ -19,13 +24,45 @@ public class EventNodeManager<T extends Node>
 	private NamedArrayList<T> nodes;
 	private NamedArrayList<EventHandler> events;
 	private String tieMethod;
+	private DataManager<T> ns;
+	private DataManager<EventHandler> es;
+	private GenericData<T> s;
+	private GenericData<EventHandler> e;
 
-	public EventNodeManager(String method)
+	public EventNodeManager(String method) throws IOException
 	{
 		super();
 		nodes = new NamedArrayList<>();
 		events = new NamedArrayList<>();
 		tieMethod = method;
+
+		ns = new DataManager<>(new File("Ns.nls"));
+		ns.DataLine = nodes;
+
+		es = new DataManager<>(new File("Es.nls"));
+		es.DataLine = events;
+
+		s = new GenericData<>(new File("S.nls"));
+		e = new GenericData<>(new File("E.nls"));
+	}
+
+	private void tiePrep()
+	{
+		ns.DataLine = nodes;
+		es.DataLine = events;
+
+		ns.save();
+		es.save();
+		s.save();
+		e.save();
+	}
+
+	private void tiePost()
+	{
+		ns.load();
+		es.load();
+		s.load();
+		e.load();
 	}
 
 	/** @return Returns the NAL for T Objects */
@@ -98,12 +135,23 @@ public class EventNodeManager<T extends Node>
 	public T makeButton(String fname, T ibutton, EventHandler eventh) throws DuplicateNameException,
 			NonExistantDataException, ClassNotFoundException, InstantiationException, IllegalAccessException
 	{
+		tiePrep();
+
 		String className = "mypackage.MyClass";
 		String javaCode = "package mypackage;\n" + "public class MyClass implements Runnable {\n"
-				+ "    public void run() {\n" + "ibutton." + tieMethod + "(eventh);\n" + "    }\n" + "}\n";
+				+ "    public void run() {\n"
+				+ "DataManager ns = new DataManager(new File(\"Ns.nls\"));DataManager es = new DataManager(new File(\"Es.nls\"));ns.load();es.load();ibutton."
+				+ tieMethod + "(eventh);ns.save();es.save();\n" + "    }\n" + "}\n" + "";
+		boolean sDM = CompilerUtils.addClassPath("src/hart/Valkyrie/util/DataManager.java");
+		System.out.println(sDM);
 		Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode);
 		Runnable runner = (Runnable) aClass.newInstance();
 		runner.run();
+
+		tiePost();
+
+		ibutton = s.DataLine.get(fname);
+
 		nodes.add(fname, ibutton);
 		return nodes.get(fname);
 	}
@@ -122,12 +170,19 @@ public class EventNodeManager<T extends Node>
 	public T makeButton(String fname, T ibutton, String eventst) throws NonExistantDataException,
 			DuplicateNameException, ClassNotFoundException, InstantiationException, IllegalAccessException
 	{
+		tiePrep();
+
 		String className = "mypackage.MyClass";
 		String javaCode = "package mypackage;\n" + "public class MyClass implements Runnable {\n"
 				+ "    public void run() {\n" + "ibutton." + tieMethod + "(events.get(eventst));\n" + "    }\n" + "}\n";
 		Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode);
 		Runnable runner = (Runnable) aClass.newInstance();
 		runner.run();
+
+		tiePost();
+
+		ibutton = s.DataLine.get(fname);
+
 		nodes.add(fname, ibutton);
 		return nodes.get(fname);
 	}
@@ -170,12 +225,15 @@ public class EventNodeManager<T extends Node>
 	 * @param buttonName Name of T to be linked
 	 * @param eventName  Name of event to be linked
 	 * @throws NonExistantDataException
-	 * @throws ClassNotFoundException 
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
+	 * @throws ClassNotFoundException
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
 	 */
-	public void makeLink(String buttonName, String eventName) throws NonExistantDataException, ClassNotFoundException, InstantiationException, IllegalAccessException
+	public void makeLink(String buttonName, String eventName)
+			throws NonExistantDataException, ClassNotFoundException, InstantiationException, IllegalAccessException
 	{
+		tiePrep();
+
 		String className = "mypackage.MyClass";
 		String javaCode = "package mypackage;\n" + "public class MyClass implements Runnable {\n"
 				+ "    public void run() {\n" + "nodes.get(buttonName)." + tieMethod + "(events.get(eventName));\n"
@@ -183,24 +241,34 @@ public class EventNodeManager<T extends Node>
 		Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode);
 		Runnable runner = (Runnable) aClass.newInstance();
 		runner.run();
+
+		tiePost();
+
+		nodes.set(buttonName, ns.DataLine.get(buttonName));
 	}
 
 	/**
 	 * @param buttonName String name of T to be unlinked
 	 * @throws NonExistantDataException
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
-	 * @throws ClassNotFoundException 
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 * @throws ClassNotFoundException
 	 */
-	public void removeLink(String buttonName) throws NonExistantDataException, InstantiationException, IllegalAccessException, ClassNotFoundException
+	public void removeLink(String buttonName)
+			throws NonExistantDataException, InstantiationException, IllegalAccessException, ClassNotFoundException
 	{
+		tiePrep();
+
 		String className = "mypackage.MyClass";
 		String javaCode = "package mypackage;\n" + "public class MyClass implements Runnable {\n"
-				+ "    public void run() {\n" + "nodes.get(buttonName)." + tieMethod + "(null);\n"
-				+ "    }\n" + "}\n";
+				+ "    public void run() {\n" + "nodes.get(buttonName)." + tieMethod + "(null);\n" + "    }\n" + "}\n";
 		Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode);
 		Runnable runner = (Runnable) aClass.newInstance();
 		runner.run();
+
+		tiePost();
+
+		nodes.set(buttonName, ns.DataLine.get(buttonName));
 	}
 
 	public static double getEventNodeManagerVersion()
