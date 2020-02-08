@@ -7,7 +7,9 @@ package hart.Valkyrie.util;
 
 import java.util.Random;
 
-public class TextGenerator
+import hart.Valkyrie.SuperConductor;
+
+public class TextGenerator implements SuperConductor
 {
 	private String[] names;
 	private Random r;
@@ -38,5 +40,12 @@ public class TextGenerator
 		}
 
 		return o;
+	}
+
+	@Override
+	public void deConstruct()
+	{
+		names = null;
+		r = null;
 	}
 }

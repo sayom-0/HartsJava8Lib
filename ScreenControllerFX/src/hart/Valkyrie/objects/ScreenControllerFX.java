@@ -2,7 +2,7 @@
  * @author Logan Hart
  * @version V1.9
  */
-package hart.Valkyrie.SCFX;
+package hart.Valkyrie.objects;
 
 import hart.Valkyrie.exceptions.DuplicateNameException;
 import hart.Valkyrie.exceptions.IllegalDimensionsException;

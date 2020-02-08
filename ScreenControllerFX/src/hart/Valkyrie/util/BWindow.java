@@ -5,7 +5,7 @@
  */
 package hart.Valkyrie.util;
 
-import hart.Valkyrie.SCFX.ScreenControllerFX;
+import hart.Valkyrie.objects.ScreenControllerFX;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class GenericData<T>
+import hart.Valkyrie.SuperConductor;
+
+public class GenericData<T> implements SuperConductor
 {
 	private final static double GENERICDATA_VERSION = 1.1;
 
@@ -16,15 +18,17 @@ public class GenericData<T>
 
 	private FileOutputStream saveos;
 	private ObjectOutputStream saveoos;
-	/**DataLine is a Public NAL that the file is copyed into*/
+	/** DataLine is a Public NAL that the file is copyed into */
 	public T Data;
-	
+
 	private File iofile;
-	
-	/**Constructor for DataManager, this links the DataManager's OIS and OOS to the file
+
+	/**
+	 * Constructor for DataManager, this links the DataManager's OIS and OOS to the
+	 * file
 	 * 
 	 * @param ifile A file object
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 
 	public GenericData(File file) throws IOException
@@ -32,8 +36,10 @@ public class GenericData<T>
 		iofile = file;
 		iofile.createNewFile();
 	}
-	
-	/**The Load method will copy the NAL from a File into the public DataLine Field*/
+
+	/**
+	 * The Load method will copy the NAL from a File into the public DataLine Field
+	 */
 
 	public void load()
 	{
@@ -47,7 +53,8 @@ public class GenericData<T>
 			e.printStackTrace();
 		}
 	}
-	/**Writes Dataline into the file*/
+
+	/** Writes Dataline into the file */
 	public void save()
 	{
 		try
@@ -66,5 +73,16 @@ public class GenericData<T>
 	public static double getGenericDataVersion()
 	{
 		return GENERICDATA_VERSION;
+	}
+
+	@Override
+	public void deConstruct()
+	{
+		fis = null;
+		ois = null;
+		saveoos = null;
+		saveos = null;
+		Data = null;
+		iofile = null;
 	}
 }

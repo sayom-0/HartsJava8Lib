@@ -13,9 +13,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import hart.Valkyrie.objects.NamedLists.NamedArrayList;
+import hart.Valkyrie.SuperConductor;
+import hart.Valkyrie.objects.NamedList;
 
-public class DataManager<T>
+public class DataManager<T> implements SuperConductor
 {
 	private final static double DATAMANAGER_VERSION = 1.1;
 
@@ -24,25 +25,28 @@ public class DataManager<T>
 
 	private FileOutputStream saveos;
 	private ObjectOutputStream saveoos;
-	/**DataLine is a Public NAL that the file is copyed into*/
-	public NamedArrayList<T> DataLine;
-	
+	/** DataLine is a Public NAL that the file is copyed into */
+	public NamedList<T> DataLine;
+
 	private File iofile;
-	
-	/**Constructor for DataManager, this links the DataManager's OIS and OOS to the file
+
+	/**
+	 * Constructor for DataManager, this links the DataManager's OIS and OOS to the
+	 * file
 	 * 
 	 * @param ifile A file object
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 
 	public DataManager(File file) throws IOException
 	{
-		DataLine = new NamedArrayList<>();
 		iofile = file;
 		iofile.createNewFile();
 	}
-	
-	/**The Load method will copy the NAL from a File into the public DataLine Field*/
+
+	/**
+	 * The Load method will copy the NAL from a File into the public DataLine Field
+	 */
 
 	public void load()
 	{
@@ -50,13 +54,14 @@ public class DataManager<T>
 		{
 			fis = new FileInputStream(iofile);
 			ois = new ObjectInputStream(fis);
-			DataLine = (NamedArrayList<T>) ois.readObject();
+			DataLine = (NamedList<T>) ois.readObject();
 		} catch (IOException | ClassNotFoundException e)
 		{
 			e.printStackTrace();
 		}
 	}
-	/**Writes Dataline into the file*/
+
+	/** Writes Dataline into the file */
 	public void save()
 	{
 		try
@@ -75,6 +80,17 @@ public class DataManager<T>
 	public static double getDatamanagerVersion()
 	{
 		return DATAMANAGER_VERSION;
+	}
+
+	@Override
+	public void deConstruct()
+	{
+		fis = null;
+		ois = null;
+		saveos = null;
+		saveoos = null;
+		DataLine.deConstruct();
+		DataLine = null;
 	}
 
 }

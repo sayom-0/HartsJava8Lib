@@ -1,6 +1,8 @@
 package hart.Valkyrie.objects;
 
-public class Reversable<T>
+import hart.Valkyrie.SuperConductor;
+
+public class Reversable<T> implements SuperConductor
 {
 	T value;
 	T last;
@@ -25,5 +27,12 @@ public class Reversable<T>
 	public T getLast()
 	{
 		return last;
+	}
+
+	@Override
+	public void deConstruct()
+	{
+		value = null;
+		last = null;
 	}
 }

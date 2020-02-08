@@ -11,6 +11,7 @@ import java.util.List;
 
 import hart.Valkyrie.exceptions.DuplicateNameException;
 import hart.Valkyrie.exceptions.NonExistantDataException;
+import hart.Valkyrie.SuperConductor;
 import hart.Valkyrie.util.Utils;
 
 /**
@@ -22,7 +23,7 @@ import hart.Valkyrie.util.Utils;
 * the actual data. ArrayList is configured to auto trim every time that data is
 * accessed.
 */
-public abstract class NamedList<T> implements Serializable
+public abstract class NamedList<T> implements Serializable, SuperConductor
 {
 	/**
 	 * 
@@ -187,6 +188,13 @@ public abstract class NamedList<T> implements Serializable
 	public static double getNLVersion()
 	{
 		return NAMEDLIST_VERSION;
+	}
+	
+	@Override
+	public void deConstruct()
+	{
+		NAL = null;
+		DAL = null;
 	}
 
 }
