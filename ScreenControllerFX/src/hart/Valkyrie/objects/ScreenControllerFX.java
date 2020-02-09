@@ -4,6 +4,7 @@
  */
 package hart.Valkyrie.objects;
 
+import hart.Valkyrie.SuperConductor;
 import hart.Valkyrie.exceptions.DuplicateNameException;
 import hart.Valkyrie.exceptions.IllegalDimensionsException;
 import hart.Valkyrie.exceptions.NonExistantDataException;
@@ -18,7 +19,7 @@ import javafx.scene.text.Text;
  * tie-in's to other classes in the library in order to manage Text, Fonts,
  * Buttons, Nodes, EventHandlers, Resolutions, and much, much more.
  */
-public class ScreenControllerFX
+public class ScreenControllerFX implements SuperConductor
 {
 	private static final double SCFX_VERSION = 1.9;
 
@@ -232,5 +233,16 @@ public class ScreenControllerFX
 	public static double getScfxVersion()
 	{
 		return SCFX_VERSION;
+	}
+
+	@Override
+	public void deConstruct()
+	{
+		texts.deConstruct();
+		texts = null;
+		fonts.deConstruct();
+		fonts = null;
+		width = (Double) null;
+		height = (Double) null;
 	}
 }
