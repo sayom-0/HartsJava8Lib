@@ -178,7 +178,7 @@ public abstract class NamedList<T> implements Serializable, SuperConductor
 
 		while (NAL.size() != x)
 		{
-			output += "Name : " + this.NAL.get(x) + " Data : " + this.DAL.get(x).toString() + " \n";
+			output += "Name : \"" + this.NAL.get(x) + "\" Data : " + this.DAL.get(x).toString() + " \n";
 			x++;
 		}
 
