@@ -1,4 +1,4 @@
-package hart.Valkyrie.objects.eventbuttonmanager;
+package hart.Valkyrie.objects.eventNodeManager;
 
 //TODO document this...
 import hart.Valkyrie.SuperConductor;

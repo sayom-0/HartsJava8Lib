@@ -3,7 +3,7 @@
  * @author Logan Hart
  * @version V2.0
  */
-package hart.Valkyrie.objects.eventbuttonmanager;
+package hart.Valkyrie.objects.eventNodeManager;
 
 //TODO update javadoc
 import hart.Valkyrie.exceptions.DuplicateNameException;
