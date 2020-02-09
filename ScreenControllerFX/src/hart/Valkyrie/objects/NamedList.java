@@ -22,6 +22,7 @@ import hart.Valkyrie.util.Utils;
 * first for a string value and using the same index on a second array list with
 * the actual data. ArrayList is configured to auto trim every time that data is
 * accessed.
+* TODO Add iterator and stream support
 */
 public abstract class NamedList<T> implements Serializable, SuperConductor
 {

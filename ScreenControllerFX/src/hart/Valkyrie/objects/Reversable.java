@@ -1,7 +1,7 @@
 package hart.Valkyrie.objects;
 
 import hart.Valkyrie.SuperConductor;
-
+//TODO document this...
 public class Reversable<T> implements SuperConductor
 {
 	T value;

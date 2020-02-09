@@ -2,6 +2,7 @@
  *
  * @author Logan Hart
  * @version V1.1
+ * TODO make this not suck
  */
 package hart.Valkyrie.util;
 
