@@ -26,6 +26,7 @@ public abstract class BWindow extends Application
 		start(stage);
 	}
 
+	/**Check if window is already closed*/
 	public void safeClose()
 	{
 		if (open)
