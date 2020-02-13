@@ -19,6 +19,7 @@ import javafx.scene.text.Text;
  * tie-in's to other classes in the library in order to manage Text, Fonts,
  * Buttons, Nodes, EventHandlers, Resolutions, and much, much more.
  */
+//TODO Switch to Map from NL
 public class ScreenControllerFX implements SuperConductor
 {
 	private static final double SCFX_VERSION = 1.9;
