@@ -31,8 +31,8 @@ public class ScreenControllerFX implements SuperConductor
 
 	private void initd()
 	{
-		texts = new NamedArrayList<Text>();
-		fonts = new NamedArrayList<Font>();
+		texts = new NamedArrayList<>();
+		fonts = new NamedArrayList<>();
 	}
 
 	/** No-Args Constructor */
