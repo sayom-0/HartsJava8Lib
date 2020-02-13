@@ -14,11 +14,28 @@ public abstract class BWindow extends Application
 {
 	protected ScreenControllerFX SCFX;
 	protected Scene scene;
-	
-	/**Replacement for launch();*/
+	protected Stage stage;
+	private boolean open;
+
+	/** Replacement for launch(); */
 
 	public void window() throws Exception
 	{
-		start(new Stage());
+		stage = new Stage();
+		open = true;
+		start(stage);
+	}
+
+	/** Close the window */
+	public void close()
+	{
+		open = false;
+		stage.close();
+	}
+
+	/** Check if stage is shown */
+	public boolean isOpen()
+	{
+		return open;
 	}
 }
