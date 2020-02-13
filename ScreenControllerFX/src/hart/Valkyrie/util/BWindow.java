@@ -5,6 +5,8 @@
  */
 package hart.Valkyrie.util;
 
+import java.util.ArrayList;
+
 import hart.Valkyrie.objects.ScreenControllerFX;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -13,6 +15,7 @@ import javafx.stage.Stage;
 public abstract class BWindow extends Application
 {
 	protected ScreenControllerFX SCFX;
+	private ArrayList<BWindow> windows;
 	protected Scene scene;
 	protected Stage stage;
 	private boolean open;
@@ -24,6 +27,15 @@ public abstract class BWindow extends Application
 		stage = new Stage();
 		open = true;
 		start(stage);
+	}
+	
+	public void closeAll()
+	{
+		for(int x = 0; x != windows.size(); x++)
+		{
+			windows.get(x).safeClose();
+		}
+		this.safeClose();
 	}
 
 	/**Check if window is already closed*/
@@ -50,5 +62,10 @@ public abstract class BWindow extends Application
 	public boolean isOpen()
 	{
 		return open;
+	}
+	
+	public void indexSubBW(BWindow bw)
+	{
+		windows.add(bw);
 	}
 }
