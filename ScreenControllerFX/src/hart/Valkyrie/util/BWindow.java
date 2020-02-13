@@ -19,12 +19,18 @@ public abstract class BWindow extends Application
 	protected Scene scene;
 	protected Stage stage;
 	private boolean open;
+	
+	/**This method must be run inside of the class that extends BW in order for it to work correctly*/
+	protected void initd()
+	{
+		windows = new ArrayList<>();
+		stage = new Stage();
+	}
 
 	/** Replacement for launch(); */
 
 	public void window() throws Exception
 	{
-		stage = new Stage();
 		open = true;
 		start(stage);
 	}
