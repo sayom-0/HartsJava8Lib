@@ -17,7 +17,7 @@ import javafx.scene.Node;
 
 public class EventNodeManager<T extends Node, E extends Event, Y extends MethodParser<T, E>> implements SuperConductor
 {
-	private final static double EVENTBUTTONMANAGER_VERSION = 2.0;
+	private final static double EVENTBUTTONMANAGER_VERSION = 3.0;
 
 	private Map<String, T> nodes;
 	private Map<String, EventHandler<E>> events;

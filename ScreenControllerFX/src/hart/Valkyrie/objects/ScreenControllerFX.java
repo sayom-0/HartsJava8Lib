@@ -24,7 +24,7 @@ import javafx.scene.text.Text;
 //TODO Switch to Map from NL
 public class ScreenControllerFX implements SuperConductor
 {
-	private static final double SCFX_VERSION = 1.9;
+	private static final double SCFX_VERSION = 2.1;
 
 	private double width;
 	private double height;
