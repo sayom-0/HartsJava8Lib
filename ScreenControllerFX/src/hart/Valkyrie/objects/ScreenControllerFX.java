@@ -4,11 +4,13 @@
  */
 package hart.Valkyrie.objects;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import hart.Valkyrie.SuperConductor;
 import hart.Valkyrie.exceptions.DuplicateNameException;
 import hart.Valkyrie.exceptions.IllegalDimensionsException;
 import hart.Valkyrie.exceptions.NonExistantDataException;
-import hart.Valkyrie.objects.NamedLists.NamedArrayList;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -27,13 +29,13 @@ public class ScreenControllerFX implements SuperConductor
 	private double width;
 	private double height;
 
-	private NamedArrayList<Text> texts;
-	private NamedArrayList<Font> fonts;
+	private Map<String, Text> texts;
+	private Map<String, Font> fonts;
 
 	private void initd()
 	{
-		texts = new NamedArrayList<>();
-		fonts = new NamedArrayList<>();
+		texts = new HashMap<>();
+		fonts = new HashMap<>();
 	}
 
 	/** No-Args Constructor */
@@ -46,7 +48,7 @@ public class ScreenControllerFX implements SuperConductor
 	/**
 	 * @param width  Width of Screen
 	 * @param height of Screen
-	 * @throws IllegalDimensionsException 
+	 * @throws IllegalDimensionsException
 	 */
 	public ScreenControllerFX(double width, double height) throws IllegalDimensionsException
 	{
@@ -70,32 +72,34 @@ public class ScreenControllerFX implements SuperConductor
 	}
 
 	/** @return returns fonts NAL */
-	public NamedArrayList<Font> exportFonts()
+	public Map<String, Font> exportFonts()
 	{
 		return fonts;
 	}
 
 	/** @param ifonts fonts NAL to load */
-	public void importFonts(NamedArrayList<Font> ifonts)
+	public void importFonts(Map<String, Font> ifonts)
 	{
 		fonts = ifonts;
 	}
 
 	/** @return Returns Text NAL */
-	public NamedArrayList<Text> exportTexts()
+	public Map<String, Text> exportTexts()
 	{
 		return texts;
 	}
 
 	/** @param itexts Texts NAL to load */
-	public void importTexts(NamedArrayList<Text> itexts)
+	public void importTexts(Map<String, Text> itexts)
 	{
 		texts = itexts;
 	}
 
-	/** @param si Name of text to return 
-	 * @throws NonExistantDataException 
-	 * @return Text that was just made*/
+	/**
+	 * @param si Name of text to return
+	 * @throws NonExistantDataException
+	 * @return Text that was just made
+	 */
 	public Text getText(String si) throws NonExistantDataException
 	{
 		return texts.get(si);
@@ -104,13 +108,13 @@ public class ScreenControllerFX implements SuperConductor
 	/**
 	 * @param fname name of new text
 	 * @param itext new text object
-	 * @throws DuplicateNameException 
-	 * @throws NonExistantDataException 
+	 * @throws DuplicateNameException
+	 * @throws NonExistantDataException
 	 * @return Text that was just made
 	 */
-	public Text makeText(String fname, Text itext) throws DuplicateNameException, NonExistantDataException
+	public Text setText(String fname, Text itext) throws DuplicateNameException, NonExistantDataException
 	{
-		texts.add(fname, itext);
+		texts.put(fname, itext);
 		return texts.get(fname);
 	}
 
@@ -119,13 +123,13 @@ public class ScreenControllerFX implements SuperConductor
 	 * @param itext new text object
 	 * @param fn    Font for new Text
 	 * @return Text that was just made
-	 * @throws DuplicateNameException 
-	 * @throws NonExistantDataException 
+	 * @throws DuplicateNameException
+	 * @throws NonExistantDataException
 	 */
-	public Text makeText(String fname, Text itext, Font fn) throws DuplicateNameException, NonExistantDataException 
+	public Text setText(String fname, Text itext, Font fn) throws DuplicateNameException, NonExistantDataException
 	{
 		itext.setFont(fn);
-		texts.add(fname, itext);
+		texts.put(fname, itext);
 		return texts.get(fname);
 	}
 
@@ -134,13 +138,13 @@ public class ScreenControllerFX implements SuperConductor
 	 * @param itext new text object
 	 * @param fn    String name of Font for new Text
 	 * @return Text that was just made
-	 * @throws DuplicateNameException 
-	 * @throws NonExistantDataException 
+	 * @throws DuplicateNameException
+	 * @throws NonExistantDataException
 	 */
-	public Text makeText(String fname, Text itext, String fn) throws DuplicateNameException, NonExistantDataException
+	public Text setText(String fname, Text itext, String fn) throws DuplicateNameException, NonExistantDataException
 	{
 		itext.setFont(getFont(fn));
-		texts.add(fname, itext);
+		texts.put(fname, itext);
 		return texts.get(fname);
 	}
 
@@ -158,18 +162,10 @@ public class ScreenControllerFX implements SuperConductor
 	}
 
 	/**
-	 * @param fname Name of text to replace
-	 * @param itext New Text Object
-	 * @throws NonExistantDataException 
+	 * @param si Name of font to return
+	 * @throws NonExistantDataException
+	 * @return Font that you searched for
 	 */
-	public void replaceText(String fname, Text itext) throws NonExistantDataException
-	{
-		texts.set(fname, itext);
-	}
-
-	/** @param si Name of font to return 
-	 * @throws NonExistantDataException 
-	 * @return Font that you searched for*/
 
 	public Font getFont(String si) throws NonExistantDataException
 	{
@@ -177,26 +173,16 @@ public class ScreenControllerFX implements SuperConductor
 	}
 
 	/**
-	 * @param fname Name of font to replace
-	 * @param ifont New Font Object
-	 * @throws NonExistantDataException 
-	 */
-	public void replaceFont(String fname, Font ifont) throws NonExistantDataException
-	{
-		fonts.set(fname, ifont);
-	}
-
-	/**
 	 * @param fname Name of new Font
 	 * @param ifont Font object to pass
-	 * @return 
-	 * @throws DuplicateNameException 
-	 * @throws NonExistantDataException 
+	 * @return
+	 * @throws DuplicateNameException
+	 * @throws NonExistantDataException
 	 * @return Font that you made
 	 */
-	public Font makeFont(String fname, Font ifont) throws DuplicateNameException, NonExistantDataException
+	public Font setFont(String fname, Font ifont) throws DuplicateNameException, NonExistantDataException
 	{
-		fonts.add(fname, ifont);
+		fonts.put(fname, ifont);
 		return fonts.get(fname);
 	}
 
@@ -239,9 +225,7 @@ public class ScreenControllerFX implements SuperConductor
 	@Override
 	public void deConstruct()
 	{
-		texts.deConstruct();
 		texts = null;
-		fonts.deConstruct();
 		fonts = null;
 		width = (Double) null;
 		height = (Double) null;
