@@ -5,7 +5,7 @@
  */
 package hart.Valkyrie.objects.eventNodeManager;
 
-//TODO update javadoc, Switch to Map
+//TODO update javadoc
 import hart.Valkyrie.exceptions.DuplicateNameException;
 import hart.Valkyrie.exceptions.NonExistantDataException;
 import java.util.HashMap;
