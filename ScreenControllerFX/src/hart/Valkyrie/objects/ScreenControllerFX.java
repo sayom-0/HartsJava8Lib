@@ -1,6 +1,6 @@
 /**
  * @author Logan Hart
- * @version V1.9
+ * @version V2.2
  */
 package hart.Valkyrie.objects;
 
@@ -21,7 +21,6 @@ import javafx.scene.text.Text;
 
 public class ScreenControllerFX implements SuperConductor
 {
-	private static final double SCFX_VERSION = 2.1;
 
 	private double width;
 	private double height;
@@ -202,12 +201,7 @@ public class ScreenControllerFX implements SuperConductor
 			return 0;
 		}
 	}
-
-	public static double getScfxVersion()
-	{
-		return SCFX_VERSION;
-	}
-
+	
 	@Override
 	public void deConstruct()
 	{
