@@ -27,9 +27,10 @@ public abstract class BWindow extends Application
 		stage = new Stage();
 	}
 
-	/** Replacement for launch(); */
+	/** Replacement for launch(); 
+	 * @throws Exception */
 
-	public void window() throws Exception
+	public void window() throws Exception 
 	{
 		open = true;
 		start(stage);
