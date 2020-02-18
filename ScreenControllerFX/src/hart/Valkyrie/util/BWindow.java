@@ -50,10 +50,8 @@ public abstract class BWindow extends Application
 		if (open)
 		{
 			close();
-			System.out.println(getClass() + " : Closed");
 		} else
 		{
-			System.out.println(getClass() + " : Already closed");
 		}
 	}
 
