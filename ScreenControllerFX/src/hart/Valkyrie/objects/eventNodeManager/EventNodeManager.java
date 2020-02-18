@@ -6,8 +6,6 @@
 package hart.Valkyrie.objects.eventNodeManager;
 
 //TODO update javadoc
-import hart.Valkyrie.exceptions.DuplicateNameException;
-import hart.Valkyrie.exceptions.NonExistantDataException;
 import java.util.HashMap;
 import java.util.Map;
 import hart.Valkyrie.SuperConductor;
@@ -57,9 +55,8 @@ public class EventNodeManager<T extends Node, E extends Event, Y extends MethodP
 
 	/**
 	 * @return Returns the T registered under that name
-	 * @throws NonExistantDataException
 	 */
-	public T getNode(String si) throws NonExistantDataException
+	public T getNode(String si)
 	{
 		return nodes.get(si);
 	}
@@ -69,9 +66,8 @@ public class EventNodeManager<T extends Node, E extends Event, Y extends MethodP
 	 * @param ibutton T to register
 	 * @throws DuplicateNameException
 	 * @return T you added
-	 * @throws NonExistantDataException
 	 */
-	public T setNode(String fname, T ibutton) throws DuplicateNameException, NonExistantDataException
+	public T setNode(String fname, T ibutton)
 	{
 		nodes.put(fname, ibutton);
 		return nodes.get(fname);
@@ -82,11 +78,8 @@ public class EventNodeManager<T extends Node, E extends Event, Y extends MethodP
 	 * @param ibutton T to register
 	 * @param eventh  Event to link to T
 	 * @return
-	 * @throws DuplicateNameException
-	 * @throws NonExistantDataException
 	 */
 	public T setNode(String fname, T ibutton, EventHandler<E> eventh)
-			throws DuplicateNameException, NonExistantDataException
 	{
 		// ibutton.setOnAction(eventh);
 		nodes.put(fname, operator.link(ibutton, eventh));
@@ -98,10 +91,8 @@ public class EventNodeManager<T extends Node, E extends Event, Y extends MethodP
 	 * @param ibutton T to register
 	 * @param eventst String to link T to
 	 * @return
-	 * @throws NonExistantDataException
-	 * @throws DuplicateNameException
 	 */
-	public T setNode(String fname, T ibutton, String eventst) throws NonExistantDataException, DuplicateNameException
+	public T setNode(String fname, T ibutton, String eventst)
 	{
 		// ibutton.setOnAction(events.get(eventst));
 		nodes.put(fname, operator.link(ibutton, events.get(eventst)));
@@ -110,9 +101,8 @@ public class EventNodeManager<T extends Node, E extends Event, Y extends MethodP
 
 	/**
 	 * @param si String to search EventHandler NAL form
-	 * @throws NonExistantDataException
 	 */
-	public EventHandler<E> getEvent(String si) throws NonExistantDataException
+	public EventHandler<E> getEvent(String si)
 	{
 		return events.get(si);
 	}
@@ -120,11 +110,8 @@ public class EventNodeManager<T extends Node, E extends Event, Y extends MethodP
 	/**
 	 * @param fname  Name of new Event
 	 * @param iEvent Event Object to be saved
-	 * @throws DuplicateNameException
-	 * @throws NonExistantDataException
 	 */
 	public EventHandler<E> setEvent(String fname, EventHandler<E> iEvent)
-			throws DuplicateNameException, NonExistantDataException
 	{
 		events.put(fname, iEvent);
 		return events.get(fname);
@@ -135,9 +122,8 @@ public class EventNodeManager<T extends Node, E extends Event, Y extends MethodP
 	 * 
 	 * @param buttonName Name of T to be linked
 	 * @param eventName  Name of event to be linked
-	 * @throws NonExistantDataException
 	 */
-	public void setLink(String buttonName, String eventName) throws NonExistantDataException
+	public void setLink(String buttonName, String eventName)
 	{
 		nodes.put(buttonName, operator.link(nodes.get(buttonName), events.get(eventName)));
 		// nodes.get(buttonName).setOnAction(events.get(eventName));
@@ -145,9 +131,8 @@ public class EventNodeManager<T extends Node, E extends Event, Y extends MethodP
 
 	/**
 	 * @param buttonName String name of T to be unlinked
-	 * @throws NonExistantDataException
 	 */
-	public void removeLink(String buttonName) throws NonExistantDataException
+	public void removeLink(String buttonName)
 	{
 		nodes.put(buttonName, operator.link(nodes.get(buttonName), null));
 		// nodes.get(buttonName).setOnAction(null);

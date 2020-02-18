@@ -6,11 +6,8 @@ package hart.Valkyrie.objects;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import hart.Valkyrie.SuperConductor;
-import hart.Valkyrie.exceptions.DuplicateNameException;
 import hart.Valkyrie.exceptions.IllegalDimensionsException;
-import hart.Valkyrie.exceptions.NonExistantDataException;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -97,10 +94,9 @@ public class ScreenControllerFX implements SuperConductor
 
 	/**
 	 * @param si Name of text to return
-	 * @throws NonExistantDataException
 	 * @return Text that was just made
 	 */
-	public Text getText(String si) throws NonExistantDataException
+	public Text getText(String si)
 	{
 		return texts.get(si);
 	}
@@ -108,11 +104,9 @@ public class ScreenControllerFX implements SuperConductor
 	/**
 	 * @param fname name of new text
 	 * @param itext new text object
-	 * @throws DuplicateNameException
-	 * @throws NonExistantDataException
 	 * @return Text that was just made
 	 */
-	public Text setText(String fname, Text itext) throws DuplicateNameException, NonExistantDataException
+	public Text setText(String fname, Text itext)
 	{
 		texts.put(fname, itext);
 		return texts.get(fname);
@@ -123,10 +117,8 @@ public class ScreenControllerFX implements SuperConductor
 	 * @param itext new text object
 	 * @param fn    Font for new Text
 	 * @return Text that was just made
-	 * @throws DuplicateNameException
-	 * @throws NonExistantDataException
 	 */
-	public Text setText(String fname, Text itext, Font fn) throws DuplicateNameException, NonExistantDataException
+	public Text setText(String fname, Text itext, Font fn)
 	{
 		itext.setFont(fn);
 		texts.put(fname, itext);
@@ -138,10 +130,8 @@ public class ScreenControllerFX implements SuperConductor
 	 * @param itext new text object
 	 * @param fn    String name of Font for new Text
 	 * @return Text that was just made
-	 * @throws DuplicateNameException
-	 * @throws NonExistantDataException
 	 */
-	public Text setText(String fname, Text itext, String fn) throws DuplicateNameException, NonExistantDataException
+	public Text setText(String fname, Text itext, String fn)
 	{
 		itext.setFont(getFont(fn));
 		texts.put(fname, itext);
@@ -152,10 +142,9 @@ public class ScreenControllerFX implements SuperConductor
 	 * @return Returns a text object built with SCFX syntax
 	 * @param text Text Object to be modifyed
 	 * @param font Name of font
-	 * @throws NonExistantDataException
 	 * @return Text that you made
 	 */
-	public Text buildText(Text text, String font) throws NonExistantDataException
+	public Text buildText(Text text, String font)
 	{
 		text.setFont(fonts.get(font));
 		return text;
@@ -163,11 +152,10 @@ public class ScreenControllerFX implements SuperConductor
 
 	/**
 	 * @param si Name of font to return
-	 * @throws NonExistantDataException
 	 * @return Font that you searched for
 	 */
 
-	public Font getFont(String si) throws NonExistantDataException
+	public Font getFont(String si)
 	{
 		return (Font) fonts.get(si);
 	}
@@ -176,11 +164,9 @@ public class ScreenControllerFX implements SuperConductor
 	 * @param fname Name of new Font
 	 * @param ifont Font object to pass
 	 * @return
-	 * @throws DuplicateNameException
-	 * @throws NonExistantDataException
 	 * @return Font that you made
 	 */
-	public Font setFont(String fname, Font ifont) throws DuplicateNameException, NonExistantDataException
+	public Font setFont(String fname, Font ifont)
 	{
 		fonts.put(fname, ifont);
 		return fonts.get(fname);
