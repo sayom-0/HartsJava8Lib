@@ -39,9 +39,7 @@ public abstract class BWindow extends Application
 	public void closeAll()
 	{
 		for(int x = 0; x != windows.size(); x++)
-		{
 			windows.get(x).safeClose();
-		}
 		this.safeClose();
 	}
 
@@ -49,11 +47,7 @@ public abstract class BWindow extends Application
 	public void safeClose()
 	{
 		if (open)
-		{
 			close();
-		} else
-		{
-		}
 	}
 
 	/** Close the window */
