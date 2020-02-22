@@ -1,7 +1,7 @@
 /** The Utils class is a collection of static methods meant to assist in simple QoL Situations
  *
  * @author Logan Hart
- * @version V1.5-1.16.20
+ * @version V1.6-2.22.20
  * TODO implement generics into get array col & row
  */
 package hart.Valkyrie.util;
@@ -10,7 +10,6 @@ import java.util.List;
 
 public class Utils
 {
-	private final static double UTILS_VERSION = 1.5;
 
 	/**
 	 * searchArrayList is a simple method, it will return a integer value that is
@@ -31,14 +30,11 @@ public class Utils
 			while (true)
 			{
 				if (array.get(x) == val)
-				{
 					return x;
-				} else
+				else
 				{
 					if (x == array.size() - 1)
-					{
 						return -1;
-					}
 					x++;
 				}
 			}
@@ -107,10 +103,34 @@ public class Utils
 
 		return output;
 	}
-
-	public static double getUtilsVersion()
+	
+	public static int lengthExcludeChar(String str, char ex)
 	{
-		return UTILS_VERSION;
+		String stro = "";
+
+		for (int x = 0; x != str.length(); x++)	
+			if(!str.substring(x, x + 1).equals(String.valueOf(ex)))
+				stro += str.substring(x, x + 1);
+
+		return stro.length();
+	}
+	
+	public static int lengthExcludeChar(String str, char[] ex)
+	{
+		String stro = "";
+
+		for (int x = 0; x != str.length(); x++)
+		{
+			boolean forb = false;
+			for (int i = 0; i != ex.length; i++)
+				if (str.substring(x, x + 1).equals(String.valueOf(ex[i])))
+					forb = true;
+			
+			if(!forb)
+				stro += str.substring(x, x + 1);
+		}
+
+		return stro.length();
 	}
 
 }
