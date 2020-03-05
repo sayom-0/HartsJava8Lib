@@ -18,7 +18,7 @@ public class Utils
 	 * 
 	 * @param <T>
 	 * 
-	 * @param array A ArrayList, type is irrelevant.
+	 * @param array A List, type is irrelevant.
 	 * @param val   Anything that extends Java.lang.Object, this is what the array
 	 *              is searched for.
 	 */
