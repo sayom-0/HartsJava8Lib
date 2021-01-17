@@ -14,7 +14,7 @@ import javafx.scene.text.Text;
 /**
  * ScreenControllerFX, or SCFX for short is a superclass and was the first major
  * addition to this library, its goal is to make storing basic javafx data
- * simpler and easy to manage, it utilizes multiple NAL's as well as module
+ * simpler and easy to manage, it utilizes multiple HashMaps's as well as module
  * tie-in's to other classes in the library in order to manage Text, Fonts,
  * Buttons, Nodes, EventHandlers, Resolutions, and much, much more.
  */

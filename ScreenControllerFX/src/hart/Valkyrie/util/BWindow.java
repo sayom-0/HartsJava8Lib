@@ -19,38 +19,41 @@ public abstract class BWindow extends Application
 	protected Scene scene;
 	protected Stage stage;
 	private boolean open;
-	
-	/**This method must be run inside of the class that extends BW in order for it to work correctly*/
-	protected void initd()
+
+	public BWindow()
 	{
 		windows = new ArrayList<>();
 		stage = new Stage();
 	}
 
-	/** Replacement for launch(); 
-	 * @throws Exception */
+	/**
+	 * Replacement for launch();
+	 * 
+	 * @throws Exception
+	 */
 
-	public void window() throws Exception 
+	public void window() throws Exception
 	{
 		open = true;
 		start(stage);
 	}
-	
+
+	/** Safely close this window and all of its sub windows */
 	public void closeAll()
 	{
-		for(int x = 0; x != windows.size(); x++)
+		for (int x = 0; x != windows.size(); x++)
 			windows.get(x).safeClose();
 		this.safeClose();
 	}
 
-	/**Check if window is already closed*/
+	/** Check if window is already closed */
 	public void safeClose()
 	{
 		if (open)
 			close();
 	}
 
-	/** Close the window */
+	/** Close the window (Unless you know what you're doing use safeClose() ) */
 	public void close()
 	{
 		open = false;
@@ -62,7 +65,8 @@ public abstract class BWindow extends Application
 	{
 		return open;
 	}
-	
+
+	/** Add a sub window, sub windows close if the parent is closed */
 	public void indexSubBW(BWindow bw)
 	{
 		windows.add(bw);
