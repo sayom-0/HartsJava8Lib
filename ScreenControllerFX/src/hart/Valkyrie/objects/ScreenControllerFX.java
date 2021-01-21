@@ -139,13 +139,25 @@ public class ScreenControllerFX implements SuperConductor
 
 	/**
 	 * @return Returns a text object built with SCFX syntax
-	 * @param text Text Object to be modifyed
+	 * @param text Text Object to be modified
 	 * @param font Name of font
 	 * @return Text that you made
 	 */
 	public Text buildText(Text text, String font)
 	{
 		text.setFont(fonts.get(font));
+		return text;
+	}
+	
+	/**
+	 * @return Returns a text object built with SCFX syntax
+	 * @param text Text Object to be modified
+	 * @param font Font object to apply to text
+	 * @return Text that you made
+	 */
+	public static Text buildText(Text text, Font font)
+	{
+		text.setFont(font);
 		return text;
 	}
 
