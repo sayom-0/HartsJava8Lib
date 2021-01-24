@@ -8,6 +8,11 @@ package hart.Valkyrie.util;
 
 import java.util.List;
 
+import hart.Valkyrie.objects.eventNodeManager.MethodParser;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+
 public class Utils
 {
 
@@ -42,6 +47,12 @@ public class Utils
 		{
 			return -1;
 		}
+	}
+
+	public static <N extends Node, E extends Event, Y extends MethodParser<N, E>> N buildEventNode(N node,
+			EventHandler<E> event, Y operator)
+	{
+		return operator.link(node, event);
 	}
 
 	/**
@@ -103,18 +114,18 @@ public class Utils
 
 		return output;
 	}
-	
+
 	public static int lengthExcludeChar(String str, char ex)
 	{
 		String stro = "";
 
-		for (int x = 0; x != str.length(); x++)	
-			if(!str.substring(x, x + 1).equals(String.valueOf(ex)))
+		for (int x = 0; x != str.length(); x++)
+			if (!str.substring(x, x + 1).equals(String.valueOf(ex)))
 				stro += str.substring(x, x + 1);
 
 		return stro.length();
 	}
-	
+
 	public static int lengthExcludeChar(String str, char[] ex)
 	{
 		String stro = "";
@@ -125,8 +136,8 @@ public class Utils
 			for (int i = 0; i != ex.length; i++)
 				if (str.substring(x, x + 1).equals(String.valueOf(ex[i])))
 					forb = true;
-			
-			if(!forb)
+
+			if (!forb)
 				stro += str.substring(x, x + 1);
 		}
 
